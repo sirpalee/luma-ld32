@@ -26,7 +26,7 @@ public class ShelfScript : MonoBehaviour {
         else
             m_rect = image.gameObject.GetComponent<RectTransform>();
 
-        m_rect.width = 0.0f;
+        //m_rect.width = 0.0f;
     }
 
     // Update is called once per frame
