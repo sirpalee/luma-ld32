@@ -4,11 +4,10 @@ using System.Collections;
 public class PlayerController : MonoBehaviour
 {
     private static PlayerController instance = null;
+    private GameObject closestItemToUse;
 
     PlayerController()
     {
-        if (instance != null)
-            throw new System.NotSupportedException();
         instance = this;
     }
 
@@ -34,6 +33,7 @@ public class PlayerController : MonoBehaviour
     {
         m_animator = gameObject.GetComponentInChildren<Animator>();
         expectedDeathTime = Time.time + initialLifeTime;
+        closestItemToUse = null;
     }
 	
     // Update is called once per frame
@@ -74,5 +74,76 @@ public class PlayerController : MonoBehaviour
 		targetPos.z = camPos.z;
 
 		Camera.main.transform.position = Vector3.MoveTowards(camPos, targetPos, (targetPos - camPos).magnitude / 2.0f);
+    }
+
+    // TODO : UGH this was a bad choice... redesign this please!
+    void OnTriggerEnter2D(Collider2D collider)
+    {
+        WendingMachine wendingMachine = collider.gameObject.GetComponent<WendingMachine>();
+        if (wendingMachine != null)
+        {
+            if (closestItemToUse == null)
+            {
+                closestItemToUse = wendingMachine.gameObject;
+                wendingMachine.SetCanvas(true);
+            }
+            else if (Vector3.Distance(closestItemToUse.transform.position, transform.position) < 
+                     Vector3.Distance(collider.transform.position, transform.position))
+            {
+                ShelfScript shelf = closestItemToUse.GetComponent<ShelfScript>();
+                if (shelf != null)
+                    shelf.SetCanvas(false);
+                else
+                {
+                    WendingMachine wm = closestItemToUse.GetComponent<WendingMachine>();
+                    wm.SetCanvas(false);
+                }
+                closestItemToUse = wendingMachine.gameObject;
+                wendingMachine.SetCanvas(true);
+            }
+        }
+        else
+        {
+            ShelfScript shelf = collider.gameObject.GetComponent<ShelfScript>();
+            if (shelf != null)
+            {
+                if (closestItemToUse == null)
+                {
+                    closestItemToUse = shelf.gameObject;
+                    shelf.SetCanvas(true);
+                }
+                else if (Vector3.Distance(closestItemToUse.transform.position, transform.position) < 
+                         Vector3.Distance(collider.transform.position, transform.position))
+                {
+                    ShelfScript sh = closestItemToUse.GetComponent<ShelfScript>();
+                    if (sh != null)
+                        sh.SetCanvas(false);
+                    else
+                    {
+                        WendingMachine wm = closestItemToUse.GetComponent<WendingMachine>();
+                        wm.SetCanvas(false);
+                    }
+                    closestItemToUse = shelf.gameObject;
+                    shelf.SetCanvas(true);
+                }
+            }
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D collider)
+    {
+        if (collider.gameObject == closestItemToUse)
+        {
+            ShelfScript shelf = collider.gameObject.GetComponent<ShelfScript>();
+            if (shelf != null)
+                shelf.SetCanvas(false);
+            else
+            {
+                WendingMachine wendingMachine = collider.gameObject.GetComponent<WendingMachine>();
+                if (wendingMachine != null)
+                    wendingMachine.SetCanvas(false);
+            }
+            closestItemToUse = null;
+        }
     }
 }

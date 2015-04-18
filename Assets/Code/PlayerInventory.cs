@@ -7,8 +7,6 @@ public class PlayerInventory : MonoBehaviour {
     
     PlayerInventory()
     {
-        if (instance != null)
-            throw new System.NotSupportedException();
         instance = this;
     }
     
@@ -21,10 +19,13 @@ public class PlayerInventory : MonoBehaviour {
     }
 
     private uint m_numberOfPies = 0;
-    private uint m_numberOfDollars = 0;
+    private uint m_numberOfDollars = 5;
 
     public uint maxNumberOfPies = 5;
     public uint maxNumberOfDollars = 100;
+
+    [HideInInspector]
+    public bool hasItemInRange = false;
 
     public uint NumberOfPies
     {
@@ -45,7 +46,7 @@ public class PlayerInventory : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
-
+        hasItemInRange = false;
     }
 
     // Update is called once per frame
@@ -54,7 +55,7 @@ public class PlayerInventory : MonoBehaviour {
 
     }
 
-    bool TryBuyingOnePie()
+    public bool TryBuyingOnePie()
     {
         if ((m_numberOfDollars > 0) && (m_numberOfPies < maxNumberOfPies))
         {
@@ -65,7 +66,7 @@ public class PlayerInventory : MonoBehaviour {
         else return false;
     }
 
-    bool TryPickingUpOneDollar()
+    public bool TryPickingUpOneDollar()
     {
         if (m_numberOfDollars < maxNumberOfDollars)
         {
