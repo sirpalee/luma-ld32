@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class WendingMachine : MonoBehaviour {
+public class VendingMachine : MonoBehaviour {
 
     private uint m_numPiesLeft;
     private Canvas m_canvas;
@@ -41,5 +41,10 @@ public class WendingMachine : MonoBehaviour {
     public void SetCanvas(bool state)
     {
         m_canvas.enabled = state;
+    }
+
+    void OnMouseOver()
+    {
+        Debug.Log("Test");
     }
 }
