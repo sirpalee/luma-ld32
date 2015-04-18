@@ -25,26 +25,25 @@ public class VendingMachine : MonoBehaviour {
     // Update is called once per frame
     void Update ()
     {
-        if (m_canvas.enabled)
+
+    }
+
+    void OnMouseEnter()
+    {
+        m_canvas.enabled = true;
+    }
+
+    void OnMouseExit()
+    {
+        m_canvas.enabled = false;
+    }
+
+    void OnMouseUp()
+    {
+        if (m_numPiesLeft > 0)
         {
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                if (m_numPiesLeft > 0)
-                {
-                    if (PlayerInventory.Instance.TryBuyingOnePie())
-                        --m_numPiesLeft;
-                }
-            }
+            if (PlayerInventory.Instance.TryBuyingOnePie())
+                --m_numPiesLeft;
         }
-    }
-
-    public void SetCanvas(bool state)
-    {
-        m_canvas.enabled = state;
-    }
-
-    void OnMouseOver()
-    {
-        Debug.Log("Test");
     }
 }

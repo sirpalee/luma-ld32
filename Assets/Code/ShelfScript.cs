@@ -30,18 +30,21 @@ public class ShelfScript : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update () {
-        if (m_canvas.enabled)
-        {
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                // TODO add item to inventory
-            }
-        }
+    void Update () 
+    {
     }
 
-    public void SetCanvas(bool state)
+    void OnMouseEnter()
     {
-        m_canvas.enabled = state;
+        m_canvas.enabled = true;
+    }
+    
+    void OnMouseExit()
+    {
+        m_canvas.enabled = false;
+    }
+    
+    void OnMouseUp()
+    {
     }
 }
