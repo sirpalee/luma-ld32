@@ -46,6 +46,7 @@ GameObject:
   - 33: {fileID: 3348888}
   - 23: {fileID: 2371324}
   - 61: {fileID: 6196844}
+  - 114: {fileID: 11443586}
   m_Layer: 0
   m_Name: VendingMachine
   m_TagString: Untagged
@@ -126,6 +127,19 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &11443586
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 193612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cd48b545b6f44ba1a4dd869d8750ec3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InitialPieCountMin: 15
+  InitialPieCountMax: 25
 --- !u!114 &11461614
 MonoBehaviour:
   m_ObjectHideFlags: 1

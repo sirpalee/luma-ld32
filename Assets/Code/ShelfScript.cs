@@ -4,11 +4,13 @@ using System.Collections;
 
 public class ShelfScript : MonoBehaviour {
 
-    [HideInInspector]
-    public string ContainedItem = "None";
+    //[HideInInspector]
+    public string containedItem = "None";
+    public float searchTime = 5.0f;
 
     private Canvas m_canvas;
     private RectTransform m_rect;
+    private Coroutine m_barCoroutine;
 
     // Use this for initialization
     void Start () {
@@ -26,7 +28,9 @@ public class ShelfScript : MonoBehaviour {
         else
             m_rect = image.gameObject.GetComponent<RectTransform>();
 
-        //m_rect.width = 0.0f;
+        m_rect.localScale = new Vector3(0.0f, 1.0f, 1.0f);
+
+        m_barCoroutine = null;
     }
 
     // Update is called once per frame
@@ -36,15 +40,56 @@ public class ShelfScript : MonoBehaviour {
 
     void OnMouseEnter()
     {
-        m_canvas.enabled = true;
+        if (containedItem != "None")
+            m_canvas.enabled = true;
+    }
+
+    void OnMouseDown()
+    {
+        if (m_barCoroutine == null)
+        {
+            if (containedItem != "None")
+            {
+                m_rect.localScale = new Vector3(0.0f, 1.0f, 1.0f);
+                m_barCoroutine = StartCoroutine(AnimateBar());
+            }
+        }
     }
     
     void OnMouseExit()
     {
+        if (m_barCoroutine != null)
+        {
+            StopCoroutine(m_barCoroutine);
+            m_rect.localScale = new Vector3(0.0f, 1.0f, 1.0f);
+            m_barCoroutine = null;
+        }
         m_canvas.enabled = false;
     }
     
+    
     void OnMouseUp()
     {
+        if (m_barCoroutine != null)
+        {
+            StopCoroutine(m_barCoroutine);
+            m_rect.localScale = new Vector3(0.0f, 1.0f, 1.0f);
+            m_barCoroutine = null;
+        }
+    }
+
+    public IEnumerator AnimateBar()
+    {
+        m_rect.localScale = new Vector3(0.0f, 1.0f, 1.0f);
+        while (m_rect.localScale.x < 1.0f)
+        {
+            m_rect.localScale = Vector3.MoveTowards(m_rect.localScale, new Vector3(1.0f, 1.0f, 1.0f), Time.fixedDeltaTime);
+            yield return null;
+        }
+        // Give item to player
+        m_barCoroutine = null;
+        PlayerController.Instance.RecieveItem(containedItem);
+        containedItem = "None";
+        m_canvas.enabled = false;
     }
 }

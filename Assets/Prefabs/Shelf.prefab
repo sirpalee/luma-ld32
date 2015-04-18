@@ -1,21 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &101372
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 446608}
-  - 61: {fileID: 6112768}
-  m_Layer: 0
-  m_Name: Collider
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &104810
 GameObject:
   m_ObjectHideFlags: 1
@@ -62,7 +46,7 @@ GameObject:
   - 33: {fileID: 3319132}
   - 23: {fileID: 2343248}
   - 114: {fileID: 11401884}
-  - 58: {fileID: 5855972}
+  - 61: {fileID: 6100692}
   m_Layer: 0
   m_Name: Shelf
   m_TagString: Untagged
@@ -97,21 +81,8 @@ Transform:
   m_LocalPosition: {x: -3.77999997, y: -2.54999995, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 446608}
   - {fileID: 22409048}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
---- !u!4 &446608
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 101372}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 442474}
   m_RootOrder: 0
 --- !u!23 &2343248
 MeshRenderer:
@@ -144,25 +115,12 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 171072}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!58 &5855972
-CircleCollider2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 171072}
-  m_Enabled: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 1
---- !u!61 &6112768
+--- !u!61 &6100692
 BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 101372}
+  m_GameObject: {fileID: 171072}
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -249,7 +207,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Press E to Search
+  m_Text: Search
 --- !u!114 &11495806
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -325,7 +283,7 @@ RectTransform:
   - {fileID: 22409876}
   - {fileID: 22400940}
   m_Father: {fileID: 442474}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 1.20000005, y: 0}
