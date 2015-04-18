@@ -4,7 +4,6 @@ using System.Collections;
 public class PlayerController : MonoBehaviour
 {
     private static PlayerController instance = null;
-    private GameObject closestItemToUse;
 
     PlayerController()
     {
@@ -33,7 +32,6 @@ public class PlayerController : MonoBehaviour
     {
         m_animator = gameObject.GetComponentInChildren<Animator>();
         expectedDeathTime = Time.time + initialLifeTime;
-        closestItemToUse = null;
     }
 	
     // Update is called once per frame
