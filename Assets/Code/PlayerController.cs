@@ -3,15 +3,37 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
+    private static PlayerController instance = null;
+
+    PlayerController()
+    {
+        if (instance != null)
+            throw new System.NotSupportedException();
+        instance = this;
+    }
+
+    public static PlayerController Instance
+    {
+        get
+        {
+            return instance;
+        }
+    }
+
     private Animator m_animator;
-    private Rigidbody2D m_rigidBody;
 
     public float walkSpeed = 1.0f;
+
+    [HideInInspector]
+    public float expectedDeathTime;
+
+    public float initialLifeTime = 600;
+
     // Use this for initialization
     void Start ()
     {
         m_animator = gameObject.GetComponentInChildren<Animator>();
-        m_rigidBody = gameObject.GetComponentInChildren<Rigidbody2D>();
+        expectedDeathTime = Time.time + initialLifeTime;
     }
 	
     // Update is called once per frame
@@ -21,8 +43,7 @@ public class PlayerController : MonoBehaviour
             return;
         Ray rayFromMouse = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-        Vector3 groundPos = rayFromMouse.origin - rayFromMouse.direction * (rayFromMouse.origin.z / rayFromMouse.direction.z);      
-       
+        Vector3 groundPos = rayFromMouse.origin - rayFromMouse.direction * (rayFromMouse.origin.z / rayFromMouse.direction.z);
 
         Vector3 aimingDirection = groundPos - transform.position;
         transform.rotation = Quaternion.FromToRotation(new Vector3(0.0f, -1.0f, 0.0f), aimingDirection);
@@ -49,5 +70,9 @@ public class PlayerController : MonoBehaviour
 
         // move the camera towards the player
         Vector3 camPos = Camera.main.transform.position;
+		Vector3 targetPos = transform.position;
+		targetPos.z = camPos.z;
+
+		Camera.main.transform.position = Vector3.MoveTowards(camPos, targetPos, (targetPos - camPos).magnitude / 2.0f);
     }
 }
