@@ -33,7 +33,12 @@ public class MainMenu : MonoBehaviour {
 
 			if(soundFile.Name.ToString() != null )
 				soundLibrary[fileCount] = soundFile.Name;
-			fileCount++;
+
+			if( soundFile.Name == "charcterHit" ) {
+				Debug.Log("Here");
+			}
+
+
 
 			//match = Regex.Match( soundFile.FullName , @".*$", RegexOptions.IgnoreCase);
 			//string[] fileParts = Regex.Split(soundFile.FullName,'\\'+Path.DirectorySeparatorChar.ToString());
@@ -42,21 +47,27 @@ public class MainMenu : MonoBehaviour {
 			//}
 
 			// DEBUG
+			soundLibrary [fileCount] = Regex.Replace (soundLibrary [fileCount], @"\..*$", @"");
+			AudioClip sound = Resources.Load("Resources/Sounds/"+soundLibrary[fileCount], typeof(AudioClip)) as AudioClip;
+			if (sound != null)
+				Debug.Log ("Here: "+sound.length);
+
+			//Debug.Log ("Sounds/"+soundLibrary[fileCount]);
+
+
+			fileCount++;
+
+			//Debug.Log ("Sounds/"+soundLibrary[10]);
 			//Debug.Log(soundLibrary.Length);
 			//Debug.Log(soundFile.Name.ToString()  );
 		}
-		soundLibrary [10] = Regex.Replace (soundLibrary [10], @"\..*$", @"");
-		Debug.Log ("Sounds/"+soundLibrary[10]);
 
 
-		AudioClip sound = Resources.Load("Sounds/"+soundLibrary[10], typeof(AudioClip)) as AudioClip;
-		if (sound != null)
-			Debug.Log ("Here: "+sound.length);
 
 
 
 		// DEBUG
-		Debug.Log(fileCount);
+		//Debug.Log(fileCount);
 
 	}
 
