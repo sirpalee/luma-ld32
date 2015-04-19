@@ -103,6 +103,13 @@ public class ShelfScript : MonoBehaviour {
                 size.x = bounds.size.x / 2.0f;
                 size.y = bounds.size.y / 2.0f;
             }
+            else
+            {
+                BoxCollider2D collider = gameObject.GetComponent<BoxCollider2D>();
+                size.z = 1.0f;
+                size.x = collider.size.x / 2.0f;
+                size.y = collider.size.y / 2.0f;
+            }
 
             // TODO use the size of the object to place the message at the right place
             Vector3 offsetDir = new Vector3(0.0f, 0.0f, -size.z);

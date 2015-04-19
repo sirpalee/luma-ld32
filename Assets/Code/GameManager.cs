@@ -57,7 +57,8 @@ public class GameManager : MonoBehaviour {
 
         int numShelves = shelves.Length;
         if (numShelves < 6) // we need at least 6 shelves
-            throw new System.NotSupportedException("Less than 6 shelves available");
+            return;
+            // throw new System.NotSupportedException("Less than 6 shelves available");
 
         List<ShelfScript> shelvesList = new List<ShelfScript>();
 
