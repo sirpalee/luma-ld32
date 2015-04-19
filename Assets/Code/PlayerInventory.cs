@@ -68,7 +68,12 @@ public class PlayerInventory : MonoBehaviour {
         }
         else if (itemTypeName == "pie")
         {
-            return false;
+            if (m_numberOfPies < maxNumberOfPies)
+            {
+                ++m_numberOfPies;
+                return true;
+            }
+            else return false;
         }
         else if (itemTypeName == "vending")
         {
