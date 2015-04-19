@@ -9,6 +9,16 @@ public class MainMenu : MonoBehaviour {
 	int musicTog;
 	int soundTog;
 
+	public void playSound ( int soundLibrary ) {
+		AudioSource temp = AudioSource.FindObjectOfType<AudioSource>();
+
+		if (temp != null) {
+			temp.Play();
+		}
+
+	}
+
+
 	public void ChangeScene (int sceneInt) {
 		Application.LoadLevel (sceneInt);
 	}
@@ -127,9 +137,6 @@ public class MainMenu : MonoBehaviour {
 		} else {
 			AudioListener.volume = 0;
 		}
-
-		Debug.Log ("Tog: " + soundTog);
-		Debug.Log ("Sound: " + soundVol);
 	}
 }
 
