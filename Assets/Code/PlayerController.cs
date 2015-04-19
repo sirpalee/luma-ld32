@@ -4,6 +4,7 @@ using System.Collections;
 public class PlayerController : MonoBehaviour
 {
     private static PlayerController instance = null;
+    private PlayerInventory m_inventory;
 
     PlayerController()
     {
@@ -30,8 +31,9 @@ public class PlayerController : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
-        m_animator = gameObject.GetComponentInChildren<Animator>();
+        m_animator = gameObject.GetComponent<Animator>();
         expectedDeathTime = Time.time + initialLifeTime;
+        m_inventory = gameObject.GetComponent<PlayerInventory>();
     }
 	
     // Update is called once per frame
@@ -49,7 +51,7 @@ public class PlayerController : MonoBehaviour
         Vector3 speed = new Vector3(0.0f, 0.0f);
         if (Input.GetKey(KeyCode.W))
             speed.y = Time.fixedDeltaTime;
-       else if (Input.GetKey(KeyCode.S))
+        else if (Input.GetKey(KeyCode.S))
            speed.y = -Time.fixedDeltaTime;
 
         if (Input.GetKey(KeyCode.A))
@@ -72,5 +74,11 @@ public class PlayerController : MonoBehaviour
 		targetPos.z = camPos.z;
 
 		Camera.main.transform.position = Vector3.MoveTowards(camPos, targetPos, (targetPos - camPos).magnitude / 2.0f);
+
+        // throwin pies
+        if (Input.GetMouseButtonDown(0) && m_inventory.TryThrowingPie())
+        {
+            m_animator.SetTrigger("throw");
+        }
     }
 }

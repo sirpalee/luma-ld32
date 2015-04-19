@@ -71,6 +71,16 @@ public class PlayerInventory : MonoBehaviour {
 
     }
 
+    public bool TryThrowingPie()
+    {
+        if (m_items["pie"] > 0)
+        {
+            --m_items["pie"];
+            return true;
+        }
+        else return false;
+    }
+
     public bool TryPickingUp(string itemTypeName)
     {
         if (itemTypeName == "coin")
