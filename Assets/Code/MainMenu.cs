@@ -48,6 +48,8 @@ public class MainMenu : MonoBehaviour {
 	}
 
 	void Start () {
+		AudioListener.volume = 0;
+
 		if (PlayerPrefs.HasKey ("Music")) {
 			musicVol = PlayerPrefs.GetFloat("Music");
 		} else {
@@ -119,8 +121,15 @@ public class MainMenu : MonoBehaviour {
 	}
 
 	void Update () {
-		//Debug.Log ("Music: " + musicVol);
-		//Debug.Log ("Sound: " + soundVol);
+		// Set Volume un/mute
+		if ( soundTog == 1 ) {
+			AudioListener.volume = soundVol;
+		} else {
+			AudioListener.volume = 0;
+		}
+
+		Debug.Log ("Tog: " + soundTog);
+		Debug.Log ("Sound: " + soundVol);
 	}
 }
 

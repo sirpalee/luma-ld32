@@ -9,7 +9,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 452218}
   - 82: {fileID: 8249630}
-  - 81: {fileID: 8116924}
   m_Layer: 0
   m_Name: BackgroundMusic
   m_TagString: Untagged
@@ -29,13 +28,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!81 &8116924
-AudioListener:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 149256}
-  m_Enabled: 1
 --- !u!82 &8249630
 AudioSource:
   m_ObjectHideFlags: 1
@@ -45,7 +37,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 3ab7b2c5c1833438da0921ca433cdbf2, type: 3}
+  m_audioClip: {fileID: 8300000, guid: f7abff6743ff54031a5747694bab7f43, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -56,21 +48,21 @@ AudioSource:
   MinDistance: 1
   MaxDistance: 500
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
   rolloffCustomCurve:
     serializedVersion: 2
     m_Curve:
-    - time: 0
+    - time: .00200000009
       value: 1
       inSlope: 0
-      outSlope: 0
+      outSlope: -1.00200403
       tangentMode: 0
     - time: 1
       value: 0
-      inSlope: 0
+      inSlope: -1.00200403
       outSlope: 0
       tangentMode: 0
     m_PreInfinity: 2
