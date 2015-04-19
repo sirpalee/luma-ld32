@@ -73,8 +73,4 @@ public class PlayerController : MonoBehaviour
 
 		Camera.main.transform.position = Vector3.MoveTowards(camPos, targetPos, (targetPos - camPos).magnitude / 2.0f);
     }
-
-    public void RecieveItem(string ItemTypeName)
-    {
-    }
 }

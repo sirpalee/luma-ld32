@@ -5,7 +5,7 @@ using System.Collections;
 public class ShelfScript : MonoBehaviour {
 
     //[HideInInspector]
-    public string containedItem = "None";
+    public string containedItem = "empty";
     public float searchTime = 5.0f;
     public float searchableFromDistance = 2.5f;
 
@@ -76,9 +76,14 @@ public class ShelfScript : MonoBehaviour {
             yield return null;
         }
         m_barCoroutine = null;
-        PlayerController.Instance.RecieveItem(containedItem);
-        containedItem = "";
-        DeleteText();
+        if (PlayerInventory.Instance.TryPickingUp(containedItem))
+        {
+            containedItem = "";
+            DeleteText();
+            ItemCounter itemCounter = FindObjectOfType<ItemCounter>();
+            if (itemCounter != null)
+                itemCounter.UpdateItems();
+        }
     }
 
     void CreateText()
