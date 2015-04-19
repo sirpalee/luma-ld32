@@ -4,7 +4,6 @@ using System.Collections;
 public class PlayerController : MonoBehaviour
 {
     private static PlayerController instance = null;
-    private PlayerInventory m_inventory;
 
     PlayerController()
     {
@@ -33,7 +32,6 @@ public class PlayerController : MonoBehaviour
     {
         m_animator = gameObject.GetComponent<Animator>();
         expectedDeathTime = Time.time + initialLifeTime;
-        m_inventory = gameObject.GetComponent<PlayerInventory>();
     }
 	
     // Update is called once per frame
@@ -45,10 +43,10 @@ public class PlayerController : MonoBehaviour
 
         Vector3 groundPos = rayFromMouse.origin - rayFromMouse.direction * (rayFromMouse.origin.z / rayFromMouse.direction.z);
 
-        Vector3 aimingDirection = groundPos - transform.position;
+        Vector3 aimingDirection = groundPos - new Vector3(transform.position.x, transform.position.y, 0.0f);
         transform.rotation = Quaternion.FromToRotation(new Vector3(0.0f, 1.0f, 0.0f), aimingDirection);
 
-        Vector3 speed = new Vector3(0.0f, 0.0f);
+        Vector3 speed = new Vector3(0.0f, 0.0f, 0.0f);
         if (Input.GetKey(KeyCode.W))
             speed.y = Time.fixedDeltaTime;
         else if (Input.GetKey(KeyCode.S))
