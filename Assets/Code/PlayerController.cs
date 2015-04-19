@@ -76,9 +76,9 @@ public class PlayerController : MonoBehaviour
 		Camera.main.transform.position = Vector3.MoveTowards(camPos, targetPos, (targetPos - camPos).magnitude / 2.0f);
 
         // throwin pies
-        if (Input.GetMouseButtonDown(0) && m_inventory.TryThrowingPie())
+        /*if (false && Input.GetMouseButtonDown(0) && m_inventory.TryThrowingPie())
         {
             m_animator.SetTrigger("throw");
-        }
+        }*/
     }
 }

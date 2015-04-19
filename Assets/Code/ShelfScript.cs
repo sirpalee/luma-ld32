@@ -80,9 +80,6 @@ public class ShelfScript : MonoBehaviour {
         {
             containedItem = "";
             DeleteText();
-            ItemCounter itemCounter = FindObjectOfType<ItemCounter>();
-            if (itemCounter != null)
-                itemCounter.UpdateItems();
         }
     }
 

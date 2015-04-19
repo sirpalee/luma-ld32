@@ -59,6 +59,13 @@ public class PlayerInventory : MonoBehaviour {
             return 0;
     }
 
+    void UpdateItemCount()
+    {
+        ItemCounter itemCounter = (ItemCounter)Object.FindObjectOfType<ItemCounter>();
+        if (itemCounter != null)
+            itemCounter.UpdateItems(this);
+    }
+
     // Use this for initialization
     void Start ()
     {
@@ -76,6 +83,7 @@ public class PlayerInventory : MonoBehaviour {
         if (m_items["pie"] > 0)
         {
             --m_items["pie"];
+            UpdateItemCount();
             return true;
         }
         else return false;
@@ -88,6 +96,7 @@ public class PlayerInventory : MonoBehaviour {
             if (m_items["dollar"] < maxNumberOfDollars)
             {
                 ++m_items["dollar"];
+                UpdateItemCount();
                 return true;
             }
             else return false;
@@ -97,6 +106,7 @@ public class PlayerInventory : MonoBehaviour {
             if (m_items["pie"] < maxNumberOfPies)
             {
                 ++m_items["pie"];
+                UpdateItemCount();
                 return true;
             }
             else return false;
@@ -107,6 +117,7 @@ public class PlayerInventory : MonoBehaviour {
             {
                 --m_items["dollar"];
                 ++m_items["pie"];
+                UpdateItemCount();
                 return true;
             }
             else return false;
@@ -116,6 +127,7 @@ public class PlayerInventory : MonoBehaviour {
         else // store item in a list
         {
             ++m_items[itemTypeName];
+            UpdateItemCount();
             return true;
         }
     }
