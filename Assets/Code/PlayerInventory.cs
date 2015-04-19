@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class PlayerInventory : MonoBehaviour {
 
@@ -18,20 +19,27 @@ public class PlayerInventory : MonoBehaviour {
         }
     }
 
-    private uint m_numberOfPies = 0;
-    private uint m_numberOfDollars = 5;
-
     public uint maxNumberOfPies = 5;
     public uint maxNumberOfDollars = 100;
 
     [HideInInspector]
     public bool hasItemInRange = false;
 
+    private Dictionary<string, uint> m_items = new Dictionary<string, uint>()
+    {
+        {"pie", 0},
+        {"dollar", 0},
+        {"chocolate", 0},
+        {"icecream", 0},
+        {"sundaecup", 0},
+        {"cherry", 0}
+    };
+
     public uint NumberOfPies
     {
         get
         {
-            return m_numberOfPies;
+            return m_items["pie"];
         }
     }
 
@@ -39,8 +47,23 @@ public class PlayerInventory : MonoBehaviour {
     {
         get
         {
-            return m_numberOfDollars;
+            return m_items["dollar"];
         }
+    }
+
+    public uint GetItemCount(string itemTypeName)
+    {
+        if (m_items.ContainsKey(itemTypeName))
+            return m_items[itemTypeName];
+        else
+            return 0;
+    }
+
+    void UpdateItemCount()
+    {
+        ItemCounter itemCounter = (ItemCounter)Object.FindObjectOfType<ItemCounter>();
+        if (itemCounter != null)
+            itemCounter.UpdateItems(this);
     }
 
     // Use this for initialization
@@ -55,24 +78,57 @@ public class PlayerInventory : MonoBehaviour {
 
     }
 
-    public bool TryBuyingOnePie()
+    public bool TryThrowingPie()
     {
-        if ((m_numberOfDollars > 0) && (m_numberOfPies < maxNumberOfPies))
+        if (m_items["pie"] > 0)
         {
-            --m_numberOfDollars;
-            ++m_numberOfPies;
+            --m_items["pie"];
+            UpdateItemCount();
             return true;
         }
         else return false;
     }
 
-    public bool TryPickingUpOneDollar()
+    public bool TryPickingUp(string itemTypeName)
     {
-        if (m_numberOfDollars < maxNumberOfDollars)
+        if (itemTypeName == "coin")
         {
-            ++m_numberOfDollars;
+            if (m_items["dollar"] < maxNumberOfDollars)
+            {
+                ++m_items["dollar"];
+                UpdateItemCount();
+                return true;
+            }
+            else return false;
+        }
+        else if (itemTypeName == "pie")
+        {
+            if (m_items["pie"] < maxNumberOfPies)
+            {
+                ++m_items["pie"];
+                UpdateItemCount();
+                return true;
+            }
+            else return false;
+        }
+        else if (itemTypeName == "vending")
+        {
+            if ((m_items["dollar"] > 0) && (m_items["pie"] < maxNumberOfPies))
+            {
+                --m_items["dollar"];
+                ++m_items["pie"];
+                UpdateItemCount();
+                return true;
+            }
+            else return false;
+        }
+        else if (itemTypeName == "empty")
+            return true;
+        else // store item in a list
+        {
+            ++m_items[itemTypeName];
+            UpdateItemCount();
             return true;
         }
-        else return false;
     }
 }

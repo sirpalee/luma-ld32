@@ -1,21 +1,21 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
 public class ItemCounter : MonoBehaviour {
 
-    private GameObject[] childObjects;
+    private DummyItem[] m_items;
 
     // Use this for initialization
-    void Start () {
-        List<GameObject> childs = new List<GameObject>();
-
-        foreach (DummyItem item in GetComponentsInChildren<DummyItem>())
+    void Start ()
+    {
+        m_items = GetComponentsInChildren<DummyItem>();
+        foreach (DummyItem dummyItem in m_items)
         {
-            childs.Add(item.gameObject);
+            Text text = dummyItem.gameObject.GetComponentInChildren<Text>();
+            text.text = "0 X";
         }
-
-        childObjects = childs.ToArray();
     }
 
     // Update is called once per frame
@@ -23,19 +23,14 @@ public class ItemCounter : MonoBehaviour {
 
     }
 
-    void AddItem(string ItemName)
+    public void UpdateItems(PlayerInventory playerInventory)
     {
-        foreach (GameObject obj in childObjects)
+        foreach (DummyItem dummyItem in m_items)
         {
-            DummyItem item = obj.GetComponent<DummyItem>();
-            if ((item != null) && (item.ItemTypeName == ItemName))
-            {
-                item.found = true;
-                // TODO change texture here
-                return;
-            }
+            Debug.Log(dummyItem.itemTypeName);
+            uint itemCount = playerInventory.GetItemCount(dummyItem.itemTypeName);
+            Text text = dummyItem.gameObject.GetComponentInChildren<Text>();
+            text.text = System.Convert.ToString(itemCount) + " X";
         }
-
-        throw new System.NotSupportedException();
     }
 }
