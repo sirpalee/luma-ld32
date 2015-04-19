@@ -85,7 +85,7 @@ public class ShelfScript : MonoBehaviour {
     {
         if (m_instancedUI == null)
         {
-            m_instancedUI = (GameObject)Object.Instantiate(Resources.Load("SearchMessage"), transform.position, transform.rotation);
+            m_instancedUI = (GameObject)Object.Instantiate(Resources.Load("Texts/SearchMessage"), transform.position, transform.rotation);
             Image image = m_instancedUI.GetComponentInChildren<Image>();
             m_rect = image.gameObject.GetComponent<RectTransform>();
             m_instancedUI.transform.SetParent(transform);
