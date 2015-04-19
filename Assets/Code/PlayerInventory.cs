@@ -55,24 +55,36 @@ public class PlayerInventory : MonoBehaviour {
 
     }
 
-    public bool TryBuyingOnePie()
+    public bool TryPickingUp(string itemTypeName)
     {
-        if ((m_numberOfDollars > 0) && (m_numberOfPies < maxNumberOfPies))
+        if (itemTypeName == "coin")
         {
-            --m_numberOfDollars;
-            ++m_numberOfPies;
+            if (m_numberOfDollars < maxNumberOfDollars)
+            {
+                ++m_numberOfDollars;
+                return true;
+            }
+            else return false;
+        }
+        else if (itemTypeName == "pie")
+        {
+            return false;
+        }
+        else if (itemTypeName == "vending")
+        {
+            if ((m_numberOfDollars > 0) && (m_numberOfPies < maxNumberOfPies))
+            {
+                --m_numberOfDollars;
+                ++m_numberOfPies;
+                return true;
+            }
+            else return false;
+        }
+        else if (itemTypeName == "")
+            return false;
+        else // store item in a list
+        {
             return true;
         }
-        else return false;
-    }
-
-    public bool TryPickingUpOneDollar()
-    {
-        if (m_numberOfDollars < maxNumberOfDollars)
-        {
-            ++m_numberOfDollars;
-            return true;
-        }
-        else return false;
     }
 }

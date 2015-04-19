@@ -41,7 +41,7 @@ public class VendingMachine : MonoBehaviour {
     {
         if (m_numPiesLeft > 0)
         {
-            if (PlayerInventory.Instance.TryBuyingOnePie())
+            if (PlayerInventory.Instance.TryPickingUp("vending"))
                 --m_numPiesLeft;
         }
     }
