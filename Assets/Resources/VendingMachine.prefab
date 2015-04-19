@@ -165,7 +165,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Press E to Buy Pie
+  m_Text: Buy Pie
 --- !u!114 &11498490
 MonoBehaviour:
   m_ObjectHideFlags: 1
