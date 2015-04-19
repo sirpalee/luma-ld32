@@ -440,10 +440,6 @@ RectTransform:
   m_PrefabParentObject: {fileID: 22489048, guid: a7f601b0aaf23524d83a484822961fc5,
     type: 2}
   m_PrefabInternal: {fileID: 1640852931}
---- !u!1 &784572242 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 180134, guid: a0a7a21a70bffe74b8e9944a88a8c401, type: 2}
-  m_PrefabInternal: {fileID: 17639301}
 --- !u!1 &996139630
 GameObject:
   m_ObjectHideFlags: 0
@@ -1117,17 +1113,6 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 784572242}
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
