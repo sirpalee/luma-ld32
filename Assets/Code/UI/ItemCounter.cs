@@ -27,7 +27,6 @@ public class ItemCounter : MonoBehaviour {
     {
         foreach (DummyItem dummyItem in m_items)
         {
-            Debug.Log(dummyItem.itemTypeName);
             uint itemCount = playerInventory.GetItemCount(dummyItem.itemTypeName);
             Text text = dummyItem.gameObject.GetComponentInChildren<Text>();
             text.text = System.Convert.ToString(itemCount) + " X";

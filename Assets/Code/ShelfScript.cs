@@ -92,33 +92,9 @@ public class ShelfScript : MonoBehaviour {
             m_rect = image.gameObject.GetComponent<RectTransform>();
             m_instancedUI.transform.SetParent(transform);
             RectTransform parentRect = m_instancedUI.GetComponent<RectTransform>();
-            Vector3 dir = PlayerController.Instance.transform.position - transform.position;
-            bool dirX = Mathf.Abs(dir.x) > Mathf.Abs(dir.y);
-            Vector3 size = new Vector3(1.0f, 1.0f, 1.0f);
-            MeshRenderer renderer = gameObject.GetComponent<MeshRenderer>();
-            if (renderer != null)
-            {
-                Bounds bounds = renderer.bounds;
-                size.z = bounds.size.z / 2.0f;
-                size.x = bounds.size.x / 2.0f;
-                size.y = bounds.size.y / 2.0f;
-            }
-            else
-            {
-                BoxCollider2D collider = gameObject.GetComponent<BoxCollider2D>();
-                size.z = 1.0f;
-                size.x = collider.size.x / 2.0f;
-                size.y = collider.size.y / 2.0f;
-            }
-
-            // TODO use the size of the object to place the message at the right place
-            Vector3 offsetDir = new Vector3(0.0f, 0.0f, -size.z);
-            if (dirX)
-                offsetDir.x = Mathf.Sign(dir.x) * (size.x + 0.2f);
-            else
-                offsetDir.y = Mathf.Sign(dir.y) * (size.z + 0.2f);
-            parentRect.localPosition = parentRect.localPosition + offsetDir;
+            parentRect.localPosition = parentRect.localPosition + new Vector3(0.0f, 0.0f, -0.5f);
             m_rect.localScale = new Vector3(0.0f, 1.0f, 1.0f);
+            m_instancedUI.transform.rotation = Quaternion.identity;
         }
     }
 
