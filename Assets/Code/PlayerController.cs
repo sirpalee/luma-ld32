@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour
         Vector3 groundPos = rayFromMouse.origin - rayFromMouse.direction * (rayFromMouse.origin.z / rayFromMouse.direction.z);
 
         Vector3 aimingDirection = groundPos - transform.position;
-        transform.rotation = Quaternion.FromToRotation(new Vector3(0.0f, -1.0f, 0.0f), aimingDirection);
+        transform.rotation = Quaternion.FromToRotation(new Vector3(0.0f, 1.0f, 0.0f), aimingDirection);
 
         Vector3 speed = new Vector3(0.0f, 0.0f);
         if (Input.GetKey(KeyCode.W))
