@@ -23,19 +23,7 @@ public class ItemCounter : MonoBehaviour {
 
     }
 
-    void AddItem(string ItemName)
+    public void UpdateItems()
     {
-        foreach (GameObject obj in childObjects)
-        {
-            DummyItem item = obj.GetComponent<DummyItem>();
-            if ((item != null) && (item.ItemTypeName == ItemName))
-            {
-                item.found = true;
-                // TODO change texture here
-                return;
-            }
-        }
-
-        throw new System.NotSupportedException();
     }
 }
