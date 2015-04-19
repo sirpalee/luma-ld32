@@ -799,6 +799,30 @@ Prefab:
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: VolumeSlider
       objectReference: {fileID: 0}
+    - target: {fileID: 11498220, guid: a7f601b0aaf23524d83a484822961fc5, type: 2}
+      propertyPath: m_Color.r
+      value: .992156923
+      objectReference: {fileID: 0}
+    - target: {fileID: 11498220, guid: a7f601b0aaf23524d83a484822961fc5, type: 2}
+      propertyPath: m_Color.g
+      value: .48627454
+      objectReference: {fileID: 0}
+    - target: {fileID: 11498220, guid: a7f601b0aaf23524d83a484822961fc5, type: 2}
+      propertyPath: m_Color.b
+      value: .168627456
+      objectReference: {fileID: 0}
+    - target: {fileID: 11426352, guid: a7f601b0aaf23524d83a484822961fc5, type: 2}
+      propertyPath: m_Color.r
+      value: .352941185
+      objectReference: {fileID: 0}
+    - target: {fileID: 11426352, guid: a7f601b0aaf23524d83a484822961fc5, type: 2}
+      propertyPath: m_Color.g
+      value: .0823529437
+      objectReference: {fileID: 0}
+    - target: {fileID: 11426352, guid: a7f601b0aaf23524d83a484822961fc5, type: 2}
+      propertyPath: m_Color.b
+      value: .0666666701
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a7f601b0aaf23524d83a484822961fc5, type: 2}
   m_IsPrefabParent: 0
