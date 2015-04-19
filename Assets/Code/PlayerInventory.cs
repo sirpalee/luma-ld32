@@ -19,9 +19,6 @@ public class PlayerInventory : MonoBehaviour {
         }
     }
 
-    private uint m_numberOfPies = 0;
-    private uint m_numberOfDollars = 5;
-
     public uint maxNumberOfPies = 5;
     public uint maxNumberOfDollars = 100;
 
