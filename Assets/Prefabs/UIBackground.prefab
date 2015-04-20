@@ -11,7 +11,7 @@ GameObject:
   - 33: {fileID: 3382526}
   - 64: {fileID: 6451506}
   - 23: {fileID: 2302274}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: UIBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 168988}
   m_LocalRotation: {x: .499999911, y: -.500000179, z: .499999821, w: -.50000006}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 50, y: 1, z: 50}
+  m_LocalScale: {x: 10, y: 1, z: 10}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
