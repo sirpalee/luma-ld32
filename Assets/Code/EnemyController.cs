@@ -5,7 +5,7 @@ using System.Collections;
 [RequireComponent(typeof(AudioSource))]
 public class EnemyController : MonoBehaviour {
 
-    float attackDistance = 8.0f;
+    public float attackDistance = 8.0f;
 
     private NavMeshAgent m_navMeshAgent;
     private AudioSource[] m_audioSources;
@@ -31,7 +31,8 @@ public class EnemyController : MonoBehaviour {
 
         if (Vector3.Distance(GameManager.Instance.playerPosition, transform.position) < attackDistance)
         {
-            m_navMeshAgent.SetDestination(GameManager.Instance.playerPosition); // slow when many agents are there
+            Vector3 targetPosition = GameManager.Instance.playerPosition;
+            m_navMeshAgent.SetDestination(targetPosition); // slow when many agents are there
             isMoving = true;
         }
         else
