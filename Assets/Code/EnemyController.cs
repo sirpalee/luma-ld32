@@ -22,6 +22,7 @@ public class EnemyController : MonoBehaviour {
         m_navMeshAgent = gameObject.GetComponent<NavMeshAgent>();
         m_audioSources = gameObject.GetComponents<AudioSource>();
         m_animator = gameObject.GetComponentInChildren<Animator>();
+        m_navMeshAgent.Stop();
     }
 
     // Update is called once per frame
@@ -31,6 +32,7 @@ public class EnemyController : MonoBehaviour {
 
         if (Vector3.Distance(GameManager.Instance.playerPosition, transform.position) < attackDistance)
         {
+            m_navMeshAgent.Resume();
             Vector3 targetPosition = GameManager.Instance.playerPosition;
             m_navMeshAgent.SetDestination(targetPosition); // slow when many agents are there
             isMoving = true;
