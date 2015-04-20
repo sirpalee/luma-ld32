@@ -6,15 +6,23 @@ using System.Collections;
 public class EnemyController : MonoBehaviour {
 
     public float attackDistance = 8.0f;
+    public float attackFrequency = 1.5f;
+
+    public float moanFrequencyMin = 4.0f;
+    public float moanFrequencyMax = 12.0f;
 
     private NavMeshAgent m_navMeshAgent;
     private AudioSource[] m_audioSources;
     private Animator m_animator;
 
-    private Coroutine m_moaningCoroutine;
-
+    private float m_lastAttackTime;
+    private float m_lastMoanTime;
+    private float m_nextMoanTime;
+    private bool m_isActive;
 
     public AudioClip[] stepClips;
+    public AudioClip[] moaningClips;
+    public AudioClip[] hitClips;
 
     // Use this for initialization
     void Start ()
@@ -23,11 +31,18 @@ public class EnemyController : MonoBehaviour {
         m_audioSources = gameObject.GetComponents<AudioSource>();
         m_animator = gameObject.GetComponentInChildren<Animator>();
         m_navMeshAgent.Stop();
+        m_isActive = true;
+        m_lastAttackTime = Time.time;
+        m_lastMoanTime = Time.time;
+        m_nextMoanTime = Random.Range(moanFrequencyMin, moanFrequencyMax);
     }
 
     // Update is called once per frame
     void Update ()
     {
+        if (!m_isActive)
+            return;
+
         bool isMoving = false;
 
         if (Vector3.Distance(GameManager.Instance.playerPosition, transform.position) < attackDistance)
@@ -48,11 +63,53 @@ public class EnemyController : MonoBehaviour {
                 m_audioSources[0].clip = stepClips[Random.Range(0, stepClips.Length)];
                 m_audioSources[0].Play();
             }
+
+            if ((Time.time - m_lastMoanTime) > m_nextMoanTime)
+            {
+                Moan();
+                m_lastMoanTime = Time.time;
+                m_nextMoanTime = Random.Range(moanFrequencyMin, moanFrequencyMax);
+            }
         }
         else
         {
             m_animator.SetBool("walk", false);
             m_audioSources[0].Stop();
+        }
+    }
+
+    void Moan()
+    {
+        if (!m_audioSources[1].isPlaying)
+        {
+            m_audioSources[1].clip = moaningClips[Random.Range(0, moaningClips.Length)];
+            m_audioSources[1].Play();
+        }
+    }
+
+    void Hit()
+    {
+        if (!m_audioSources[2].isPlaying)
+        {
+            m_audioSources[2].clip = hitClips[Random.Range(0, hitClips.Length)];
+            m_audioSources[2].Play();
+        }
+    }
+
+    void OnCollisionStay(Collision collision)
+    {
+        if (!m_isActive)
+            return;
+
+        PlayerController playerController = collision.gameObject.GetComponent<PlayerController>();
+        if (playerController != null)
+        {
+            if ((Time.time - m_lastAttackTime) > attackFrequency)
+            {
+                m_lastAttackTime = Time.time;
+                --playerController.remainingHealth;
+                Hit();
+            }
         }
     }
 }

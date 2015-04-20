@@ -23,6 +23,9 @@ public class HeartDisplay : MonoBehaviour {
         {
             m_lastDisplayedHealth = PlayerController.Instance.remainingHealth;
 
+            if (m_lastDisplayedHealth < 1)
+                Application.LoadLevel("GameOver");
+
             // quick mindles solution
 
             if (m_lastDisplayedHealth == 0)
