@@ -202,7 +202,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   containedItem: empty
   searchTime: 6
-  searchableFromDistance: 3
+  searchableFromDistance: 1
 --- !u!114 &11475768
 MonoBehaviour:
   m_ObjectHideFlags: 1

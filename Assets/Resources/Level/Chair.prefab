@@ -201,7 +201,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   containedItem: empty
   searchTime: 3
-  searchableFromDistance: 2
+  searchableFromDistance: 1
 --- !u!135 &13588518
 SphereCollider:
   m_ObjectHideFlags: 1

@@ -283,7 +283,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   InitialPieCountMin: 15
   InitialPieCountMax: 25
-  canBuyFromDistance: 4
+  canBuyFromDistance: 2
   coinSounds:
   - {fileID: 8300000, guid: e5c32764e50a54ec9b5561ae69644eb4, type: 3}
   - {fileID: 8300000, guid: 2e52849c60c6e4c77a5982b28c1a595d, type: 3}

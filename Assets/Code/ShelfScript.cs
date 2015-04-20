@@ -13,12 +13,26 @@ public class ShelfScript : MonoBehaviour {
     private RectTransform m_rect;
     private Coroutine m_barCoroutine;
 
+    private float m_approximateObjectRadius = 0.0f;
+
     // Use this for initialization
     void Start ()
     {
         m_barCoroutine = null;
         m_rect = null;
         m_instancedUI = null;
+
+        BoxCollider boxCollider = gameObject.GetComponent<BoxCollider>();
+        if (boxCollider != null)
+        {
+            m_approximateObjectRadius = Vector3.Distance(boxCollider.bounds.min, boxCollider.bounds.max) / 2.0f;
+        }
+        else
+        {
+            SphereCollider sphereCollider = gameObject.GetComponent<SphereCollider>();
+            m_approximateObjectRadius = sphereCollider.radius;
+        }
+        m_approximateObjectRadius += searchableFromDistance;
     }
 
     // Update is called once per frame
@@ -30,7 +44,7 @@ public class ShelfScript : MonoBehaviour {
     {
         if ((containedItem != "") && 
             (Vector3.Distance(transform.position, PlayerController.Instance.gameObject.transform.position)
-            < searchableFromDistance))
+            < m_approximateObjectRadius))
         {
             CreateText();
         }
