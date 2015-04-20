@@ -28,6 +28,9 @@ public class PlayerController : MonoBehaviour
     [HideInInspector]
     public float expectedDeathTime;
 
+    [HideInInspector]
+    public int remainingHealth;
+
     public float initialLifeTime = 600;
     public AudioClip[] footStepClips;
 
@@ -43,6 +46,7 @@ public class PlayerController : MonoBehaviour
         m_audioSource = gameObject.GetComponent<AudioSource>();
         m_rigidBody = gameObject.GetComponent<Rigidbody>();
         m_inventory = gameObject.GetComponent<PlayerInventory>();
+        remainingHealth = 6;
     }
 	
     // Update is called once per frame
