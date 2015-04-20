@@ -133,6 +133,8 @@ public class EnemyController : MonoBehaviour {
             m_staticSplat.transform.SetParent(transform);
         }
         m_navMeshAgent.Stop();
+        m_animator.SetBool("walk", false);
+        StartCoroutine(ReviveTimer());
     }
 
     private IEnumerator ReviveTimer()
