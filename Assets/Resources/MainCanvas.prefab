@@ -11,7 +11,7 @@ GameObject:
   - 222: {fileID: 22220392}
   - 114: {fileID: 11430586}
   - 114: {fileID: 11417456}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: CherryItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29,7 +29,7 @@ GameObject:
   - 223: {fileID: 22303718}
   - 114: {fileID: 11483986}
   - 114: {fileID: 11454450}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: MainCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,7 +46,7 @@ GameObject:
   - 224: {fileID: 22402904}
   - 222: {fileID: 22224382}
   - 114: {fileID: 11487476}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: CounterText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -63,7 +63,7 @@ GameObject:
   - 224: {fileID: 22492812}
   - 222: {fileID: 22249328}
   - 114: {fileID: 11454790}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: CounterText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -80,7 +80,7 @@ GameObject:
   - 224: {fileID: 22425318}
   - 222: {fileID: 22249940}
   - 114: {fileID: 11414202}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: CounterText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,7 +98,7 @@ GameObject:
   - 222: {fileID: 22294176}
   - 114: {fileID: 11471466}
   - 114: {fileID: 11488186}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: ChocolateItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -116,7 +116,7 @@ GameObject:
   - 222: {fileID: 22289080}
   - 114: {fileID: 11404222}
   - 114: {fileID: 11470772}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: TimeLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -134,7 +134,7 @@ GameObject:
   - 222: {fileID: 22250106}
   - 114: {fileID: 11476634}
   - 114: {fileID: 11458680}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: IcecreamItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -151,7 +151,7 @@ GameObject:
   - 224: {fileID: 22412974}
   - 222: {fileID: 22249412}
   - 114: {fileID: 11426692}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: CounterText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -169,7 +169,7 @@ GameObject:
   - 222: {fileID: 22281150}
   - 114: {fileID: 11403882}
   - 114: {fileID: 11415550}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: SundaecupItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -185,7 +185,7 @@ GameObject:
   m_Component:
   - 224: {fileID: 22440716}
   - 114: {fileID: 11419756}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: ItemsFoundGroup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -203,7 +203,7 @@ GameObject:
   - 222: {fileID: 22229570}
   - 114: {fileID: 11452528}
   - 114: {fileID: 11497668}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: DollarItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -220,7 +220,7 @@ GameObject:
   - 224: {fileID: 22412578}
   - 222: {fileID: 22200682}
   - 114: {fileID: 11402002}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: CounterText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -237,7 +237,7 @@ GameObject:
   - 224: {fileID: 22487518}
   - 222: {fileID: 22204850}
   - 114: {fileID: 11436290}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: CounterText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -255,7 +255,7 @@ GameObject:
   - 222: {fileID: 22281924}
   - 114: {fileID: 11490624}
   - 114: {fileID: 11410072}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: PieItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -274,7 +274,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FontData:
     m_Font: {fileID: 12800000, guid: a9c6403ce366c49648eac4a7f3b29803, type: 3}
     m_FontSize: 16
@@ -359,7 +359,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FontData:
     m_Font: {fileID: 12800000, guid: a9c6403ce366c49648eac4a7f3b29803, type: 3}
     m_FontSize: 16
@@ -420,7 +420,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FontData:
     m_Font: {fileID: 12800000, guid: a9c6403ce366c49648eac4a7f3b29803, type: 3}
     m_FontSize: 16
@@ -467,7 +467,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FontData:
     m_Font: {fileID: 12800000, guid: a9c6403ce366c49648eac4a7f3b29803, type: 3}
     m_FontSize: 16
@@ -530,7 +530,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FontData:
     m_Font: {fileID: 12800000, guid: a9c6403ce366c49648eac4a7f3b29803, type: 3}
     m_FontSize: 16
@@ -642,7 +642,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FontData:
     m_Font: {fileID: 12800000, guid: a9c6403ce366c49648eac4a7f3b29803, type: 3}
     m_FontSize: 16

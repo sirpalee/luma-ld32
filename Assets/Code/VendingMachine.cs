@@ -61,10 +61,7 @@ public class VendingMachine : MonoBehaviour {
     {
         if (m_instancedUI == null)
         {
-            m_instancedUI = (GameObject)Object.Instantiate(Resources.Load("Texts/BuyPieMessage"), transform.position, transform.rotation);
-            RectTransform parentRect = m_instancedUI.GetComponent<RectTransform>();
-            parentRect.localPosition = parentRect.localPosition + new Vector3(0.0f, 0.0f, -0.5f);
-            m_instancedUI.transform.rotation = Quaternion.identity;
+            m_instancedUI = (GameObject)Object.Instantiate(Resources.Load("Texts/BuyPieMessage"), transform.position + new Vector3(0.0f, 0.6f, 0.0f), Quaternion.Euler(90.0f, 0.0f, 0.0f));
         }
     }
     
