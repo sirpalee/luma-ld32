@@ -11,7 +11,7 @@ public class EnemyController : MonoBehaviour {
     public float moanFrequencyMin = 4.0f;
     public float moanFrequencyMax = 12.0f;
 
-    public float reviveTime = 30.0f;
+    public float reviveTime = 60.0f;
 
     public string spawnItemAtDeath = "coin";
     public int health = -1;
