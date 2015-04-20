@@ -176,6 +176,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkSpeed: 6
   expectedDeathTime: 0
+  remainingHealth: 0
   initialLifeTime: 600
   footStepClips:
   - {fileID: 8300000, guid: 79c5d1003935041a7a7156b130d4d782, type: 3}
@@ -199,8 +200,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83d607cd0de5a447fa46e6794c073619, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxNumberOfPies: 8
+  maxNumberOfPies: 20
   maxNumberOfDollars: 100
+  piesPerDollar: 2
   hasItemInRange: 0
 --- !u!135 &13582978
 SphereCollider:
