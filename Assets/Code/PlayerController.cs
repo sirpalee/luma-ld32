@@ -2,6 +2,7 @@
 using System.Collections;
 
 [RequireComponent (typeof(AudioSource))]
+[RequireComponent (typeof(Rigidbody))]
 public class PlayerController : MonoBehaviour
 {
     private static PlayerController instance = null;
@@ -30,6 +31,7 @@ public class PlayerController : MonoBehaviour
     public AudioClip[] footStepClips;
 
     private AudioSource m_audioSource;
+    private Rigidbody m_rigidBody;
 
     // Use this for initialization
     void Start ()
@@ -37,6 +39,7 @@ public class PlayerController : MonoBehaviour
         m_animator = gameObject.GetComponentInChildren<Animator>();
         expectedDeathTime = Time.time + initialLifeTime;
         m_audioSource = gameObject.GetComponent<AudioSource>();
+        m_rigidBody = gameObject.GetComponent<Rigidbody>();
     }
 	
     // Update is called once per frame
@@ -94,6 +97,11 @@ public class PlayerController : MonoBehaviour
             }
         }
         else m_audioSource.Stop();
+
+        GameManager.Instance.playerPosition = transform.position;
+        m_rigidBody.angularVelocity = new Vector3(0.0f, 0.0f, 0.0f);
+        m_rigidBody.velocity = new Vector3(0.0f, 0.0f, 0.0f);
+
         // throwin pies
         /*if (false && Input.GetMouseButtonDown(0) && m_inventory.TryThrowingPie())
         {

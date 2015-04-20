@@ -48,6 +48,9 @@ public class GameManager : MonoBehaviour {
     [HideInInspector]
     public float gameStartTime;
 
+    [HideInInspector]
+    public Vector3 playerPosition = new Vector3(0.0f, 0.0f, 0.0f);
+
     // Use this for initialization
     void Start () {
         gameStartTime = Time.time;

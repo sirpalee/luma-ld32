@@ -87,14 +87,10 @@ public class ShelfScript : MonoBehaviour {
     {
         if (m_instancedUI == null)
         {
-            m_instancedUI = (GameObject)Object.Instantiate(Resources.Load("Texts/SearchMessage"), transform.position, transform.rotation);
+            m_instancedUI = (GameObject)Object.Instantiate(Resources.Load("Texts/SearchMessage"), transform.position + new Vector3(0.0f, 0.6f, 0.0f) , Quaternion.identity);
             Image image = m_instancedUI.GetComponentInChildren<Image>();
             m_rect = image.gameObject.GetComponent<RectTransform>();
-            m_instancedUI.transform.SetParent(transform);
-            RectTransform parentRect = m_instancedUI.GetComponent<RectTransform>();
-            parentRect.localPosition = parentRect.localPosition + new Vector3(0.0f, 0.0f, -0.5f);
             m_rect.localScale = new Vector3(0.0f, 1.0f, 1.0f);
-            m_instancedUI.transform.rotation = Quaternion.identity;
         }
     }
 
