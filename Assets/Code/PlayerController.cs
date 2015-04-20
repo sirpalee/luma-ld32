@@ -2,7 +2,6 @@
 using System.Collections;
 
 [RequireComponent (typeof(AudioSource))]
-[RequireComponent (typeof(Animator))]
 public class PlayerController : MonoBehaviour
 {
     private static PlayerController instance = null;
@@ -35,7 +34,7 @@ public class PlayerController : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
-        m_animator = gameObject.GetComponent<Animator>();
+        m_animator = gameObject.GetComponentInChildren<Animator>();
         expectedDeathTime = Time.time + initialLifeTime;
         m_audioSource = gameObject.GetComponent<AudioSource>();
     }
@@ -50,7 +49,7 @@ public class PlayerController : MonoBehaviour
         Vector3 groundPos = rayFromMouse.origin - rayFromMouse.direction * (rayFromMouse.origin.y / rayFromMouse.direction.y);
 
         Vector3 aimingDirection = groundPos - new Vector3(transform.position.x, 0.0f, transform.position.z);
-        transform.rotation = Quaternion.FromToRotation(new Vector3(0.0f, 0.0f, 1.0f), aimingDirection) * Quaternion.Euler(90.0f, 0.0f, 0.0f);
+        transform.rotation = Quaternion.FromToRotation(new Vector3(0.0f, 0.0f, 1.0f), aimingDirection);
 
         Vector3 speed = new Vector3(0.0f, 0.0f, 0.0f);
         if (Input.GetKey(KeyCode.W))
