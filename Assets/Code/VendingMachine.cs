@@ -2,19 +2,24 @@
 using UnityEngine.UI;
 using System.Collections;
 
+[RequireComponent(typeof(AudioSource))]
 public class VendingMachine : MonoBehaviour {
 
     private uint m_numPiesLeft;
     private GameObject m_instancedUI;
+    private AudioSource m_audioSource;
 
     public uint InitialPieCountMin = 15;
     public uint InitialPieCountMax = 25;
     public float canBuyFromDistance = 3.0f;
 
+    public AudioClip[] coinSounds;
+
     // Use this for initialization
     void Start ()
     {
         m_numPiesLeft = (uint)Random.Range((int)InitialPieCountMin, (int)InitialPieCountMax);
+        m_audioSource = gameObject.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -42,7 +47,13 @@ public class VendingMachine : MonoBehaviour {
         if (m_numPiesLeft > 0)
         {
             if (PlayerInventory.Instance.TryPickingUp("vending"))
+            {
                 --m_numPiesLeft;
+                if (m_audioSource.isPlaying)
+                    m_audioSource.Stop();
+                m_audioSource.clip = coinSounds[Random.Range(0, coinSounds.Length)];
+                m_audioSource.Play();
+            }
         }
     }
 

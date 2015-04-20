@@ -2,7 +2,6 @@
 using System.Collections;
 
 [RequireComponent (typeof(AudioSource))]
-[RequireComponent (typeof(Animator))]
 public class PlayerController : MonoBehaviour
 {
     private static PlayerController instance = null;
@@ -35,7 +34,7 @@ public class PlayerController : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
-        m_animator = gameObject.GetComponent<Animator>();
+        m_animator = gameObject.GetComponentInChildren<Animator>();
         expectedDeathTime = Time.time + initialLifeTime;
         m_audioSource = gameObject.GetComponent<AudioSource>();
     }
@@ -47,16 +46,16 @@ public class PlayerController : MonoBehaviour
             return;
         Ray rayFromMouse = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-        Vector3 groundPos = rayFromMouse.origin - rayFromMouse.direction * (rayFromMouse.origin.z / rayFromMouse.direction.z);
+        Vector3 groundPos = rayFromMouse.origin - rayFromMouse.direction * (rayFromMouse.origin.y / rayFromMouse.direction.y);
 
-        Vector3 aimingDirection = groundPos - new Vector3(transform.position.x, transform.position.y, 0.0f);
-        transform.rotation = Quaternion.FromToRotation(new Vector3(0.0f, 1.0f, 0.0f), aimingDirection);
+        Vector3 aimingDirection = groundPos - new Vector3(transform.position.x, 0.0f, transform.position.z);
+        transform.rotation = Quaternion.FromToRotation(new Vector3(0.0f, 0.0f, 1.0f), aimingDirection);
 
         Vector3 speed = new Vector3(0.0f, 0.0f, 0.0f);
         if (Input.GetKey(KeyCode.W))
-            speed.y = Time.fixedDeltaTime;
+            speed.z = Time.fixedDeltaTime;
         else if (Input.GetKey(KeyCode.S))
-           speed.y = -Time.fixedDeltaTime;
+           speed.z = -Time.fixedDeltaTime;
 
         if (Input.GetKey(KeyCode.A))
            speed.x = -Time.fixedDeltaTime;
@@ -76,7 +75,7 @@ public class PlayerController : MonoBehaviour
         // move the camera towards the player
         Vector3 camPos = Camera.main.transform.position;
 		Vector3 targetPos = transform.position;
-		targetPos.z = camPos.z;
+		targetPos.y = camPos.y;
 
 		Camera.main.transform.position = Vector3.MoveTowards(camPos, targetPos, (targetPos - camPos).magnitude / 2.0f);
 

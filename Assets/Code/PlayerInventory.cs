@@ -27,8 +27,8 @@ public class PlayerInventory : MonoBehaviour {
 
     private Dictionary<string, uint> m_items = new Dictionary<string, uint>()
     {
-        {"pie", 0},
-        {"dollar", 0},
+        {"pie", 1},
+        {"dollar", 5},
         {"chocolate", 0},
         {"icecream", 0},
         {"sundaecup", 0},

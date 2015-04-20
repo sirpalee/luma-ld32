@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[RequireComponent(typeof(AudioSource))]
 public class SimpleSound : MonoBehaviour {
 
     private AudioSource m_audioSource;
@@ -8,7 +9,6 @@ public class SimpleSound : MonoBehaviour {
     // Use this for initialization
     void Start () {
         m_audioSource = gameObject.GetComponent<AudioSource>();
-        m_audioSource.Play();
     }
 
     // Update is called once per frame
