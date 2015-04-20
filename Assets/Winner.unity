@@ -170,7 +170,7 @@ GameObject:
   - 224: {fileID: 599252373}
   - 222: {fileID: 599252375}
   - 114: {fileID: 599252374}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -184,7 +184,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 599252372}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1043173711}
@@ -271,7 +271,6 @@ GameObject:
   - 20: {fileID: 927740741}
   - 92: {fileID: 927740740}
   - 124: {fileID: 927740739}
-  - 81: {fileID: 927740738}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -279,13 +278,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &927740738
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 927740737}
-  m_Enabled: 1
 --- !u!124 &927740739
 Behaviour:
   m_ObjectHideFlags: 0
@@ -446,7 +438,7 @@ GameObject:
   - 222: {fileID: 1203319242}
   - 114: {fileID: 1203319241}
   - 114: {fileID: 1203319240}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Menu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -541,7 +533,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1203319239}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1043173711}
@@ -636,6 +628,10 @@ Prefab:
       propertyPath: m_audioClip
       value: 
       objectReference: {fileID: 8300000, guid: 7b9acd3879dc4764c96ffb8289568fa0, type: 3}
+    - target: {fileID: 8257986, guid: eeb568e5acc8b904d82f0937aa5bf75b, type: 2}
+      propertyPath: rolloffMode
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: eeb568e5acc8b904d82f0937aa5bf75b, type: 2}
   m_IsPrefabParent: 0
