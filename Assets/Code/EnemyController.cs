@@ -13,6 +13,9 @@ public class EnemyController : MonoBehaviour {
 
     public float reviveTime = 30.0f;
 
+    public string spawnItemAtDeath = "coin";
+    public int health = -1;
+
     private NavMeshAgent m_navMeshAgent;
     private AudioSource[] m_audioSources;
     private Animator m_animator;
@@ -122,19 +125,35 @@ public class EnemyController : MonoBehaviour {
 
     public void HitByAPie()
     {
-        m_isActive = false;
-        if (m_reviveTimer != null)
-            StopCoroutine(m_reviveTimer);
-        if (m_staticSplat == null)
+        if (health == -1)
         {
-            m_staticSplat = (GameObject)Instantiate(Resources.Load("SplatStatic"),
-                                                    new Vector3(transform.position.x, 0.0f, transform.position.z),
-                                                    Quaternion.Euler(0.0f, Random.Range(0.0f, 360.0f), 0.0f));
-            m_staticSplat.transform.SetParent(transform);
+            m_isActive = false;
+            if (m_reviveTimer != null)
+                StopCoroutine(m_reviveTimer);
+            if (m_staticSplat == null)
+            {
+                m_staticSplat = (GameObject)Instantiate(Resources.Load("SplatStatic"),
+                                                        new Vector3(transform.position.x, 0.0f, transform.position.z),
+                                                        Quaternion.Euler(0.0f, Random.Range(0.0f, 360.0f), 0.0f));
+                m_staticSplat.transform.SetParent(transform);
+            }
+            m_navMeshAgent.Stop();
+            m_animator.SetBool("walk", false);
+            StartCoroutine(ReviveTimer());
+            Instantiate(Resources.Load("Items/" + spawnItemAtDeath),
+                        new Vector3(transform.position.x, 0.0f, transform.position.z),
+                        Quaternion.Euler(0.0f, Random.Range(0.0f, 360.0f), 0.0f));
         }
-        m_navMeshAgent.Stop();
-        m_animator.SetBool("walk", false);
-        StartCoroutine(ReviveTimer());
+        else
+        {
+            if (--health < 1)
+            {
+                Instantiate(Resources.Load("Items/" + spawnItemAtDeath),
+                            new Vector3(transform.position.x, 0.0f, transform.position.z),
+                            Quaternion.Euler(0.0f, Random.Range(0.0f, 360.0f), 0.0f));
+                Destroy(this.gameObject);
+            }
+        }
     }
 
     private IEnumerator ReviveTimer()

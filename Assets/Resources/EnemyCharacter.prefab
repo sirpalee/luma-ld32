@@ -303,6 +303,8 @@ MonoBehaviour:
   moanFrequencyMin: 4
   moanFrequencyMax: 12
   reviveTime: 30
+  spawnItemAtDeath: CoinPickup
+  health: -1
   stepClips:
   - {fileID: 8300000, guid: 79c5d1003935041a7a7156b130d4d782, type: 3}
   - {fileID: 8300000, guid: 9fcd7f8ed2ac14e6694e474ec0bd1f0f, type: 3}

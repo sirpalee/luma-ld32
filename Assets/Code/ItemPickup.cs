@@ -15,7 +15,7 @@ public class ItemPickup : MonoBehaviour {
 
     }
 
-    void OnTriggerEnter2D(Collider2D collider)
+    void OnTriggerEnter(Collider collider)
     {
         PlayerInventory playerInventory = collider.gameObject.GetComponent<PlayerInventory>();
         if (playerInventory != null)
