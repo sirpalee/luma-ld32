@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[RequireComponent (typeof(AudioSource))]
+[RequireComponent (typeof(Animator))]
 public class PlayerController : MonoBehaviour
 {
     private static PlayerController instance = null;
@@ -26,12 +28,16 @@ public class PlayerController : MonoBehaviour
     public float expectedDeathTime;
 
     public float initialLifeTime = 600;
+    public AudioClip[] footStepClips;
+
+    private AudioSource m_audioSource;
 
     // Use this for initialization
     void Start ()
     {
         m_animator = gameObject.GetComponent<Animator>();
         expectedDeathTime = Time.time + initialLifeTime;
+        m_audioSource = gameObject.GetComponent<AudioSource>();
     }
 	
     // Update is called once per frame
@@ -59,13 +65,14 @@ public class PlayerController : MonoBehaviour
 
         speed = speed * walkSpeed;
 
-        if (speed.sqrMagnitude > 0.001f)
+        bool isWalking = speed.sqrMagnitude > 0.001f;
+
+        if (isWalking)
             m_animator.SetBool("walk", true);
         else
             m_animator.SetBool("walk", false);
 
         transform.position = speed + transform.position;
-
         // move the camera towards the player
         Vector3 camPos = Camera.main.transform.position;
 		Vector3 targetPos = transform.position;
@@ -73,6 +80,21 @@ public class PlayerController : MonoBehaviour
 
 		Camera.main.transform.position = Vector3.MoveTowards(camPos, targetPos, (targetPos - camPos).magnitude / 2.0f);
 
+        if (Input.GetMouseButtonDown(0))
+        {
+            GameObject.Instantiate(Resources.Load("Sounds/Reference"), transform.position, Quaternion.identity);
+        }
+
+        if (isWalking)
+        {
+            if (!m_audioSource.isPlaying)
+            {
+                AudioClip clip = footStepClips[Random.Range(0, footStepClips.Length)];
+                m_audioSource.clip = clip;
+                m_audioSource.Play();
+            }
+        }
+        else m_audioSource.Stop();
         // throwin pies
         /*if (false && Input.GetMouseButtonDown(0) && m_inventory.TryThrowingPie())
         {
