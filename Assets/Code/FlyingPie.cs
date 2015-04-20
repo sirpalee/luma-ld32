@@ -32,6 +32,7 @@ public class FlyingPie : MonoBehaviour {
         if (enemyController != null)
         {
             SpawnSplat();
+            enemyController.HitByAPie();
         }
         else if (collider.gameObject.tag == "Wall")
         {

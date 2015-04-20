@@ -11,6 +11,8 @@ public class EnemyController : MonoBehaviour {
     public float moanFrequencyMin = 4.0f;
     public float moanFrequencyMax = 12.0f;
 
+    public float reviveTime = 30.0f;
+
     private NavMeshAgent m_navMeshAgent;
     private AudioSource[] m_audioSources;
     private Animator m_animator;
@@ -24,6 +26,9 @@ public class EnemyController : MonoBehaviour {
     public AudioClip[] moaningClips;
     public AudioClip[] hitClips;
 
+    private Coroutine m_reviveTimer;
+    private GameObject m_staticSplat;
+
     // Use this for initialization
     void Start ()
     {
@@ -35,6 +40,8 @@ public class EnemyController : MonoBehaviour {
         m_lastAttackTime = Time.time;
         m_lastMoanTime = Time.time;
         m_nextMoanTime = Random.Range(moanFrequencyMin, moanFrequencyMax);
+        m_reviveTimer = null;
+        m_staticSplat = null;
     }
 
     // Update is called once per frame
@@ -111,5 +118,28 @@ public class EnemyController : MonoBehaviour {
                 Hit();
             }
         }
+    }
+
+    public void HitByAPie()
+    {
+        m_isActive = false;
+        if (m_reviveTimer != null)
+            StopCoroutine(m_reviveTimer);
+        if (m_staticSplat == null)
+        {
+            m_staticSplat = (GameObject)Instantiate(Resources.Load("SplatStatic"),
+                                                    new Vector3(transform.position.x, 0.0f, transform.position.z),
+                                                    Quaternion.Euler(0.0f, Random.Range(0.0f, 360.0f), 0.0f));
+            m_staticSplat.transform.SetParent(transform);
+        }
+        m_navMeshAgent.Stop();
+    }
+
+    private IEnumerator ReviveTimer()
+    {
+        yield return new WaitForSeconds(reviveTime);
+        m_isActive = true;
+        Destroy(m_staticSplat);
+        m_staticSplat = null;
     }
 }
