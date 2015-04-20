@@ -94,6 +94,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2347722, guid: f0d63497abf964111bf56e4b53864f53, type: 2}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 473330, guid: f0d63497abf964111bf56e4b53864f53, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -128,6 +132,14 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 2347722, guid: f0d63497abf964111bf56e4b53864f53, type: 2}
       propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a9a35a0efc4794b31ba962b861285bb8, type: 2}
+    - target: {fileID: 149992, guid: f0d63497abf964111bf56e4b53864f53, type: 2}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2347722, guid: f0d63497abf964111bf56e4b53864f53, type: 2}
+      propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 2100000, guid: a9a35a0efc4794b31ba962b861285bb8, type: 2}
     m_RemovedComponents: []
@@ -840,7 +852,7 @@ GameObject:
   - 4: {fileID: 1665427634}
   - 20: {fileID: 1665427633}
   - 92: {fileID: 1665427632}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
