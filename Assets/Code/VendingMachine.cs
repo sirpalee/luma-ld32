@@ -28,7 +28,7 @@ public class VendingMachine : MonoBehaviour {
 
     }
 
-    void OnMouseEnter()
+    void OnMouseOver()
     {
         if ((Vector3.Distance(transform.position, PlayerController.Instance.gameObject.transform.position)
          < canBuyFromDistance))

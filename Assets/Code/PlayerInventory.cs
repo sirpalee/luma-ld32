@@ -132,4 +132,9 @@ public class PlayerInventory : MonoBehaviour {
             return true;
         }
     }
+
+    public bool IsReadyForMagicSmoothie()
+    {
+        return (m_items["chocolate"] > 2) && (m_items["icecream"] > 1) && (m_items["sundaecup"] > 0) && (m_items["cherry"] > 0);
+    }
 }
