@@ -70,6 +70,7 @@ public class PlayerInventory : MonoBehaviour {
     void Start ()
     {
         hasItemInRange = false;
+        UpdateItemCount();
     }
 
     // Update is called once per frame

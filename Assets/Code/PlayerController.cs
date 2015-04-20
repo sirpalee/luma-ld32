@@ -3,6 +3,7 @@ using System.Collections;
 
 [RequireComponent (typeof(AudioSource))]
 [RequireComponent (typeof(Rigidbody))]
+[RequireComponent (typeof(PlayerInventory))]
 public class PlayerController : MonoBehaviour
 {
     private static PlayerController instance = null;
@@ -32,6 +33,7 @@ public class PlayerController : MonoBehaviour
 
     private AudioSource m_audioSource;
     private Rigidbody m_rigidBody;
+    private PlayerInventory m_inventory;
 
     // Use this for initialization
     void Start ()
@@ -40,6 +42,7 @@ public class PlayerController : MonoBehaviour
         expectedDeathTime = Time.time + initialLifeTime;
         m_audioSource = gameObject.GetComponent<AudioSource>();
         m_rigidBody = gameObject.GetComponent<Rigidbody>();
+        m_inventory = gameObject.GetComponent<PlayerInventory>();
     }
 	
     // Update is called once per frame
@@ -103,9 +106,12 @@ public class PlayerController : MonoBehaviour
         m_rigidBody.velocity = new Vector3(0.0f, 0.0f, 0.0f);
 
         // throwin pies
-        /*if (false && Input.GetMouseButtonDown(0) && m_inventory.TryThrowingPie())
+        if (Input.GetMouseButtonDown(0) && m_inventory.TryThrowingPie())
         {
+            GameObject pie = (GameObject)Instantiate(Resources.Load("Items/PieInAir"), transform.position + new Vector3(0.0f, 0.4f, 0.0f), transform.rotation);
+            FlyingPie flyingPie = pie.GetComponent<FlyingPie>();
+            flyingPie.direction = aimingDirection.normalized;
             m_animator.SetTrigger("throw");
-        }*/
+        }
     }
 }
