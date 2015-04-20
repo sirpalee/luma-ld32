@@ -40,13 +40,23 @@ public class ShelfScript : MonoBehaviour {
     {
     }
 
-    void OnMouseEnter()
+    void OnMouseOver()
     {
         if ((containedItem != "") && 
             (Vector3.Distance(transform.position, PlayerController.Instance.gameObject.transform.position)
-            < m_approximateObjectRadius))
+         < m_approximateObjectRadius))
         {
             CreateText();
+        }
+        else
+        {
+            if (m_barCoroutine != null)
+            {
+                StopCoroutine(m_barCoroutine);
+                m_rect.localScale = new Vector3(0.0f, 1.0f, 1.0f);
+                m_barCoroutine = null;
+            }
+            else if (m_instancedUI != null) DeleteText();
         }
     }
 
