@@ -627,7 +627,7 @@ Prefab:
     - target: {fileID: 8257986, guid: eeb568e5acc8b904d82f0937aa5bf75b, type: 2}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: 7b9acd3879dc4764c96ffb8289568fa0, type: 3}
+      objectReference: {fileID: 8300000, guid: 5961879a3d6574c7889252d11172c834, type: 3}
     - target: {fileID: 8257986, guid: eeb568e5acc8b904d82f0937aa5bf75b, type: 2}
       propertyPath: rolloffMode
       value: 1
