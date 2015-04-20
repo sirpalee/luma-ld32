@@ -28,8 +28,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 101604}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.61999989, y: 0, z: -1}
+  m_LocalRotation: {x: .707106829, y: 0, z: 0, w: .707106709}
+  m_LocalPosition: {x: 3.61999989, y: 0, z: 1.07000005}
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
@@ -79,7 +79,7 @@ AudioSource:
   Mute: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 2.38466525
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
@@ -177,16 +177,16 @@ MonoBehaviour:
   expectedDeathTime: 0
   initialLifeTime: 600
   footStepClips:
-  - {fileID: 8300000, guid: 4f93aa99c071b4743b11e15594471049, type: 3}
-  - {fileID: 8300000, guid: 58d6034ae95894559b931bea9a23f7ea, type: 3}
-  - {fileID: 8300000, guid: ac79a08baac3849bd9db22ede15399b5, type: 3}
-  - {fileID: 8300000, guid: 109f936adcea34886964fd443bb170c8, type: 3}
-  - {fileID: 8300000, guid: 3dc179a9221dd4f588e7599b3a7cfc36, type: 3}
-  - {fileID: 8300000, guid: 87f3e933324b24bfea319adf8133fc99, type: 3}
-  - {fileID: 8300000, guid: 125373d5e5bee45b3b3c4aa3331401ff, type: 3}
-  - {fileID: 8300000, guid: 121a35040661a4b9a87652ebc0298c2f, type: 3}
-  - {fileID: 8300000, guid: 4268bd907f17646ce8eb6c1b1e024cf3, type: 3}
-  - {fileID: 8300000, guid: b29574d24690148d4854aecf8cdd20ca, type: 3}
+  - {fileID: 8300000, guid: 79c5d1003935041a7a7156b130d4d782, type: 3}
+  - {fileID: 8300000, guid: 9fcd7f8ed2ac14e6694e474ec0bd1f0f, type: 3}
+  - {fileID: 8300000, guid: fa66c342fd1ad48dfafb1b6471ab3f39, type: 3}
+  - {fileID: 8300000, guid: 9be9cd90d37e242bc819387df357b182, type: 3}
+  - {fileID: 8300000, guid: d5f84aeb83066400bb6832a05beae4f8, type: 3}
+  - {fileID: 8300000, guid: da58fc33821834b94aa2f505d6a2ffb4, type: 3}
+  - {fileID: 8300000, guid: 834ced10670d94d7a83288377f16cc18, type: 3}
+  - {fileID: 8300000, guid: 432b0682668a540988db68c6d90cd3e6, type: 3}
+  - {fileID: 8300000, guid: dc168027a12b04fd1a9f2c9a6885efd6, type: 3}
+  - {fileID: 8300000, guid: f60840560b74c4a2089be5b43c24f46d, type: 3}
 --- !u!212 &21243732
 SpriteRenderer:
   m_ObjectHideFlags: 1

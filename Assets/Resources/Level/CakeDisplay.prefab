@@ -40,8 +40,8 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 499382}
-  - 61: {fileID: 6127494}
   - 114: {fileID: 11478342}
+  - 65: {fileID: 6515684}
   m_Layer: 0
   m_Name: CakeDisplay
   m_TagString: Untagged
@@ -80,26 +80,25 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 196414}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 1.5949614, y: -2.0938127, z: -1.11084175}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 423384}
   - {fileID: 408068}
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!61 &6127494
-BoxCollider2D:
+--- !u!65 &6515684
+BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 196414}
-  m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0}
+  m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.25, y: 1.44000006}
+  m_Size: {x: 3.1500001, y: 1.22000003, z: .850000024}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &11478342
 MonoBehaviour:
   m_ObjectHideFlags: 1
