@@ -1,15 +1,27 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
-using System;
-using System.IO;
-using System.Text.RegularExpressions;
 
 public class MainMenu : MonoBehaviour {
 	
 	float soundVol;
 	int soundTog;
-	
+
+
+
+	void soundLibCreate () {
+
+		//Object[] sounds = Resources.FindObjectsOfTypeAll<AudioClipLoadType;
+		Object[] sounds = Resources.LoadAll<AudioClip> ("Audio");
+
+		foreach (Object sound in sounds) {
+			//Debug.Log(sound.name);
+		}
+
+		Debug.Log (sounds.Length);
+	}
+
+
 	public void ChangeScene (int sceneInt) {
 		Application.LoadLevel (sceneInt);
 	}
@@ -34,6 +46,10 @@ public class MainMenu : MonoBehaviour {
 	}
 
 	void Start () {
+		// Start SoundLib
+		this.soundLibCreate ();
+
+
 		// Zero the Listener while we figure out soundSettings
 		AudioListener.volume = 0;
 

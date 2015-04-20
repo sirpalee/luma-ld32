@@ -1905,3 +1905,14 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2073472071}
+--- !u!1 &2102126121 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 149256, guid: 98e8a20ebf1ae4adfb36e884b6826550, type: 2}
+  m_PrefabInternal: {fileID: 255843965}
+--- !u!81 &2102126122
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2102126121}
+  m_Enabled: 1
