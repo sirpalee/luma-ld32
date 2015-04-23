@@ -25,6 +25,8 @@ public class ItemCounter : MonoBehaviour {
 
     public void UpdateItems(PlayerInventory playerInventory)
     {
+        if (m_items == null)
+            return;
         foreach (DummyItem dummyItem in m_items)
         {
             uint itemCount = playerInventory.GetItemCount(dummyItem.itemTypeName);
