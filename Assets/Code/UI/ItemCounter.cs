@@ -16,6 +16,9 @@ public class ItemCounter : MonoBehaviour {
             Text text = dummyItem.gameObject.GetComponentInChildren<Text>();
             text.text = "0 X";
         }
+        PlayerInventory playerInventory = (PlayerInventory)Object.FindObjectOfType<PlayerInventory>();
+        if (playerInventory != null)
+            UpdateItems(playerInventory);
     }
 
     // Update is called once per frame
