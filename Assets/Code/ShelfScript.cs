@@ -38,7 +38,23 @@ public class ShelfScript : MonoBehaviour {
     // Update is called once per frame
     void Update () 
     {
-
+        if (Input.GetButton("Use"))
+        {
+            if (m_barCoroutine == null && m_instancedUI != null)
+            {
+                m_rect.localScale = new Vector3(0.0f, 1.0f, 1.0f);
+                m_barCoroutine = StartCoroutine(AnimateBar());
+            }
+        }
+        else if (Input.GetButtonUp("Use"))
+        {
+            if (m_barCoroutine != null)
+            {
+                StopCoroutine(m_barCoroutine);
+                m_rect.localScale = new Vector3(0.0f, 1.0f, 1.0f);
+                m_barCoroutine = null;
+            }
+        }
     }
 
     void OnMouseOver()
@@ -60,15 +76,6 @@ public class ShelfScript : MonoBehaviour {
             else if (m_instancedUI != null) DeleteText();
         }
     }
-
-    void OnMouseDown()
-    {
-        if (m_barCoroutine == null && m_instancedUI != null)
-        {
-            m_rect.localScale = new Vector3(0.0f, 1.0f, 1.0f);
-            m_barCoroutine = StartCoroutine(AnimateBar());
-        }
-    }
     
     void OnMouseExit()
     {
@@ -79,17 +86,6 @@ public class ShelfScript : MonoBehaviour {
             m_barCoroutine = null;
         }
         else if (m_instancedUI != null) DeleteText();
-    }
-    
-    
-    void OnMouseUp()
-    {
-        if (m_barCoroutine != null)
-        {
-            StopCoroutine(m_barCoroutine);
-            m_rect.localScale = new Vector3(0.0f, 1.0f, 1.0f);
-            m_barCoroutine = null;
-        }
     }
 
     public IEnumerator AnimateBar()

@@ -6,13 +6,14 @@ public class SmoothieMachine : MonoBehaviour {
     public float canBuyFromDistance = 3.0f;
 
     // Use this for initialization
-    void Start () {
+    void Start ()
+    {
         m_instancedUI = null;
-
     }
 
     // Update is called once per frame
-    void Update () {
+    void Update ()
+    {
 
     }
 

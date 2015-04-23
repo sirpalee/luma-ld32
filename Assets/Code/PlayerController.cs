@@ -124,7 +124,7 @@ public class PlayerController : MonoBehaviour
         Vector3 aimingDirection = GetAimingDirection();
 
         // throwin pies
-        if (Input.GetMouseButtonDown(1) && m_inventory.TryThrowingPie())
+        if (Input.GetButtonUp("Throw") && m_inventory.TryThrowingPie())
         {
             GameObject pie = (GameObject)Instantiate(Resources.Load("Items/PieInAir"), transform.position + new Vector3(0.0f, 0.4f, 0.0f), transform.rotation);
             FlyingPie flyingPie = pie.GetComponent<FlyingPie>();
