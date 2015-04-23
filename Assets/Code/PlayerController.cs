@@ -71,15 +71,8 @@ public class PlayerController : MonoBehaviour
         transform.rotation = Quaternion.FromToRotation(new Vector3(0.0f, 0.0f, 1.0f), aimingDirection);
 
         Vector3 speed = new Vector3(0.0f, 0.0f, 0.0f);
-        if (Input.GetKey(KeyCode.W))
-            speed.z = Time.fixedDeltaTime;
-        else if (Input.GetKey(KeyCode.S))
-           speed.z = -Time.fixedDeltaTime;
-
-        if (Input.GetKey(KeyCode.A))
-           speed.x = -Time.fixedDeltaTime;
-        else if (Input.GetKey(KeyCode.D))
-           speed.x = Time.fixedDeltaTime;
+        speed.z = Input.GetAxis("Vertical") * Time.fixedDeltaTime;
+        speed.x = Input.GetAxis("Horizontal") * Time.fixedDeltaTime;
 
         speed = speed * walkSpeed;
 
