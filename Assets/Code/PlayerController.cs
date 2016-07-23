@@ -48,29 +48,31 @@ public class PlayerController : MonoBehaviour
         m_inventory = gameObject.GetComponent<PlayerInventory>();
         remainingHealth = 6;
     }
-	
-    // Update is called once per frame
-    void FixedUpdate ()
+
+    Vector3 GetAimingDirection()
     {
         if (Camera.main == null) // ie the camera has not be done shit with
-            return;
+            return new Vector3(1.0f, 0.0f, 0.0f);
         Ray rayFromMouse = Camera.main.ScreenPointToRay(Input.mousePosition);
 
         Vector3 groundPos = rayFromMouse.origin - rayFromMouse.direction * (rayFromMouse.origin.y / rayFromMouse.direction.y);
 
-        Vector3 aimingDirection = groundPos - new Vector3(transform.position.x, 0.0f, transform.position.z);
+        return groundPos - new Vector3(transform.position.x, 0.0f, transform.position.z);
+
+    }
+	
+    // Update is called once per frame
+    void FixedUpdate ()
+    {
+        if (Camera.main == null)
+            return;
+
+        Vector3 aimingDirection = GetAimingDirection();
         transform.rotation = Quaternion.FromToRotation(new Vector3(0.0f, 0.0f, 1.0f), aimingDirection);
 
         Vector3 speed = new Vector3(0.0f, 0.0f, 0.0f);
-        if (Input.GetKey(KeyCode.W))
-            speed.z = Time.fixedDeltaTime;
-        else if (Input.GetKey(KeyCode.S))
-           speed.z = -Time.fixedDeltaTime;
-
-        if (Input.GetKey(KeyCode.A))
-           speed.x = -Time.fixedDeltaTime;
-        else if (Input.GetKey(KeyCode.D))
-           speed.x = Time.fixedDeltaTime;
+        speed.z = Input.GetAxis("Vertical") * Time.fixedDeltaTime;
+        speed.x = Input.GetAxis("Horizontal") * Time.fixedDeltaTime;
 
         speed = speed * walkSpeed;
 
@@ -108,9 +110,14 @@ public class PlayerController : MonoBehaviour
         GameManager.Instance.playerPosition = transform.position;
         m_rigidBody.angularVelocity = new Vector3(0.0f, 0.0f, 0.0f);
         m_rigidBody.velocity = new Vector3(0.0f, 0.0f, 0.0f);
+    }
+
+    void Update()
+    {
+        Vector3 aimingDirection = GetAimingDirection();
 
         // throwin pies
-        if (Input.GetMouseButtonDown(1) && m_inventory.TryThrowingPie())
+        if (Input.GetButtonUp("Throw") && m_inventory.TryThrowingPie())
         {
             GameObject pie = (GameObject)Instantiate(Resources.Load("Items/PieInAir"), transform.position + new Vector3(0.0f, 0.4f, 0.0f), transform.rotation);
             FlyingPie flyingPie = pie.GetComponent<FlyingPie>();

@@ -25,10 +25,26 @@ public class VendingMachine : MonoBehaviour {
     // Update is called once per frame
     void Update ()
     {
-
+        if (Input.GetButtonUp("Use"))
+        {
+            if (m_instancedUI != null)
+            {
+                if (m_numPiesLeft > 0)
+                {
+                    if (PlayerInventory.Instance.TryPickingUp("vending"))
+                    {
+                        --m_numPiesLeft;
+                        if (m_audioSource.isPlaying)
+                            m_audioSource.Stop();
+                        m_audioSource.clip = coinSounds[Random.Range(0, coinSounds.Length)];
+                        m_audioSource.Play();
+                    }
+                }
+            }
+        }
     }
 
-    void OnMouseEnter()
+    void OnMouseOver()
     {
         if ((Vector3.Distance(transform.position, PlayerController.Instance.gameObject.transform.position)
          < canBuyFromDistance))
@@ -42,20 +58,6 @@ public class VendingMachine : MonoBehaviour {
         DeleteText();
     }
 
-    void OnMouseUp()
-    {
-        if (m_numPiesLeft > 0)
-        {
-            if (PlayerInventory.Instance.TryPickingUp("vending"))
-            {
-                --m_numPiesLeft;
-                if (m_audioSource.isPlaying)
-                    m_audioSource.Stop();
-                m_audioSource.clip = coinSounds[Random.Range(0, coinSounds.Length)];
-                m_audioSource.Play();
-            }
-        }
-    }
 
     void CreateText()
     {

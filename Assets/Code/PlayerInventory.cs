@@ -21,13 +21,14 @@ public class PlayerInventory : MonoBehaviour {
 
     public uint maxNumberOfPies = 5;
     public uint maxNumberOfDollars = 100;
+    public uint piesPerDollar = 2;
 
     [HideInInspector]
     public bool hasItemInRange = false;
 
     private Dictionary<string, uint> m_items = new Dictionary<string, uint>()
     {
-        {"pie", 1},
+        {"pie", 10},
         {"dollar", 5},
         {"chocolate", 0},
         {"icecream", 0},
@@ -114,10 +115,10 @@ public class PlayerInventory : MonoBehaviour {
         }
         else if (itemTypeName == "vending")
         {
-            if ((m_items["dollar"] > 0) && (m_items["pie"] < maxNumberOfPies))
+            if ((m_items["dollar"] > 0) && (m_items["pie"] < (maxNumberOfPies - piesPerDollar + 1)))
             {
                 --m_items["dollar"];
-                ++m_items["pie"];
+                m_items["pie"] += 2;
                 UpdateItemCount();
                 return true;
             }
@@ -131,5 +132,10 @@ public class PlayerInventory : MonoBehaviour {
             UpdateItemCount();
             return true;
         }
+    }
+
+    public bool IsReadyForMagicSmoothie()
+    {
+        return (m_items["chocolate"] > 2) && (m_items["icecream"] > 1) && (m_items["sundaecup"] > 0) && (m_items["cherry"] > 0);
     }
 }

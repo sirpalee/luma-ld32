@@ -21,8 +21,8 @@ public class FlyingPie : MonoBehaviour {
 
     void SpawnSplat()
     {
-        GameObject splat = (GameObject)Instantiate(Resources.Load("Splat"), new Vector3(transform.position.x, 0.0f, transform.position.z),
-                                                   Quaternion.identity);
+        Instantiate(Resources.Load("Splat"), new Vector3(transform.position.x, 0.0f, transform.position.z),
+                    Quaternion.identity);
         Destroy(this.gameObject);
     }
 
