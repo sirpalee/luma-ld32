@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-[RequireComponent(typeof(NavMeshAgent))]
+[RequireComponent(typeof(UnityEngine.AI.NavMeshAgent))]
 [RequireComponent(typeof(AudioSource))]
 public class EnemyController : MonoBehaviour {
 
@@ -16,7 +16,7 @@ public class EnemyController : MonoBehaviour {
     public string spawnItemAtDeath = "coin";
     public int health = -1;
 
-    private NavMeshAgent m_navMeshAgent;
+    private UnityEngine.AI.NavMeshAgent m_navMeshAgent;
     private AudioSource[] m_audioSources;
     private Animator m_animator;
 
@@ -35,7 +35,7 @@ public class EnemyController : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
-        m_navMeshAgent = gameObject.GetComponent<NavMeshAgent>();
+        m_navMeshAgent = gameObject.GetComponent<UnityEngine.AI.NavMeshAgent>();
         m_audioSources = gameObject.GetComponents<AudioSource>();
         m_animator = gameObject.GetComponentInChildren<Animator>();
         m_navMeshAgent.Stop();
