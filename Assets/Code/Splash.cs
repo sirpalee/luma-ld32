@@ -1,23 +1,18 @@
 ﻿using UnityEngine;
-using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class Splash : MonoBehaviour {
+    private float _timer = 10;
 
-	float timer	= 10;
-	
-	void Update () {
-		
-		timer -= Time.deltaTime;
-		
-		if (timer < 0) {
-			Application.LoadLevel("MainMenu");
-		}
-		
-		if (Input.anyKey && timer < 7) {
-			Application.LoadLevel("MainMenu");
-		}
-	}
+    void Update() {
+        _timer -= Time.deltaTime;
 
+        if (_timer < 0) {
+            SceneManager.LoadScene("MainMenu");
+        }
+
+        if (Input.anyKey && _timer < 7) {
+            SceneManager.LoadScene("MainMenu");
+        }
+    }
 }
-
-// EOF

@@ -4,38 +4,23 @@ using System.Collections;
 public class FlyingPie : MonoBehaviour {
     public Vector3 direction;
     public float speed;
-    // Use this for initialization
-    void Start () {
 
-    }
-
-    // Update is called once per frame
-    void Update () {
-
-    }
-
-    void FixedUpdate()
-    {
+    private void FixedUpdate() {
         transform.position = transform.position + speed * direction * Time.fixedDeltaTime;
     }
 
-    void SpawnSplat()
-    {
+    private void SpawnSplat() {
         Instantiate(Resources.Load("Splat"), new Vector3(transform.position.x, 0.0f, transform.position.z),
-                    Quaternion.identity);
+            Quaternion.identity);
         Destroy(this.gameObject);
     }
 
-    void OnTriggerEnter(Collider collider)
-    {
-        EnemyController enemyController = collider.gameObject.GetComponent<EnemyController>();
-        if (enemyController != null)
-        {
+    private void OnTriggerEnter(Collider collider) {
+        var enemyController = collider.gameObject.GetComponent<EnemyController>();
+        if (enemyController != null) {
             SpawnSplat();
             enemyController.HitByAPie();
-        }
-        else if (collider.gameObject.tag == "Wall")
-        {
+        } else if (collider.gameObject.CompareTag("Wall")) {
             SpawnSplat();
         }
     }

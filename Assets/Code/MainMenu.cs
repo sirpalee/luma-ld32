@@ -1,83 +1,60 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour {
-	
-	float soundVol;
-	int soundTog;
+    private float soundVol;
+    private int soundTog;
 
-	public void ChangeScene (int sceneInt) {
-		Application.LoadLevel (sceneInt);
-	}
+    private void Start() {
+        // Zero the Listener while we figure out soundSettings
+        AudioListener.volume = 0;
 
-	public void ExitGame () {
-		Application.Quit ();
-	}
+        if (PlayerPrefs.HasKey("Sound")) {
+            soundVol = PlayerPrefs.GetFloat("Sound");
+        } else {
+            soundVol = 1;
+            PlayerPrefs.SetFloat("Sound", soundVol);
+        }
 
-	public void VolumeSlider ( float slider ) {
-		soundVol = slider;
-		PlayerPrefs.SetFloat("Sound", soundVol);
-	}
+        if (PlayerPrefs.HasKey("SoundTog")) {
+            soundTog = PlayerPrefs.GetInt("SoundTog");
+        } else {
+            soundTog = 1;
+            PlayerPrefs.SetInt("SoundTog", soundTog);
+        }
 
-	public void VolumeTog ( bool active ) {
-		if (active == true) {
-			soundTog = 1;
-		} else {
-			soundTog = 0;
-		}
+        // Restore values in UI
+        var temp = GameObject.Find("SoundSlider");
+        if (temp != null) {
+            var tempSlide = temp.GetComponent<Slider>();
+            if (tempSlide != null) {
+                tempSlide.value = soundVol;
+            }
+        }
 
-		PlayerPrefs.SetInt("SoundTog", soundTog);
-	}
+        temp = GameObject.Find("SoundToggle");
+        if (temp != null) {
+            Toggle tempTog = temp.GetComponent<Toggle>();
+            if (tempTog != null) {
+                if (soundTog > 0) {
+                    tempTog.isOn = true;
+                } else {
+                    tempTog.isOn = false;
+                }
+            }
+        }
+    }
 
-	void Start () {
-		// Zero the Listener while we figure out soundSettings
-		AudioListener.volume = 0;
-
-		if (PlayerPrefs.HasKey ("Sound")) {
-			soundVol = PlayerPrefs.GetFloat ("Sound");
-		} else {
-			soundVol = 1;
-			PlayerPrefs.SetFloat ("Sound", soundVol);
-		}
-
-		if (PlayerPrefs.HasKey ("SoundTog")) {
-			soundTog = PlayerPrefs.GetInt ("SoundTog");
-		} else {
-			soundTog = 1;
-			PlayerPrefs.SetInt ("SoundTog", soundTog);
-		}
-
-		// Restore values in UI
-		GameObject temp = GameObject.Find ("SoundSlider");
-		if (temp != null) {
-			Slider tempSlide = temp.GetComponent<Slider> ();
-			if (tempSlide != null) {
-				tempSlide.value = soundVol;
-			}
-		}
-
-		temp = GameObject.Find ("SoundToggle");
-		if (temp != null) {
-			Toggle tempTog = temp.GetComponent<Toggle> ();
-			if (tempTog != null) {
-				if (soundTog > 0) {
-					tempTog.isOn = true;
-				} else {
-					tempTog.isOn = false;
-				}
-			}
-		}
-	}
-
-	void Update () {
-		// Set Volume un/mute
-		if ( soundTog == 1 ) {
-			AudioListener.volume = soundVol;
-		} else {
-			AudioListener.volume = 0;
-		}
-	}
+    void Update() {
+        // Set Volume un/mute
+        if (soundTog == 1) {
+            AudioListener.volume = soundVol;
+        } else {
+            AudioListener.volume = 0;
+        }
+    }
 }
 
 // EOF

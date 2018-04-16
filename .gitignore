@@ -15,6 +15,10 @@
 *.booproj
 .idea
 
+# Jetbrains rider plugin
+Assets/Plugins
+Assets/Plugins.meta
+
 # Unity3D generated meta files
 *.pidb.meta
 

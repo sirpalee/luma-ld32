@@ -3,31 +3,23 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class PlayerInventory : MonoBehaviour {
+    private static PlayerInventory instance;
 
-    private static PlayerInventory instance = null;
-    
-    PlayerInventory()
-    {
+    private PlayerInventory() {
         instance = this;
     }
-    
-    public static PlayerInventory Instance
-    {
-        get
-        {
-            return instance;
-        }
+
+    public static PlayerInventory Instance {
+        get { return instance; }
     }
 
     public uint maxNumberOfPies = 5;
     public uint maxNumberOfDollars = 100;
     public uint piesPerDollar = 2;
 
-    [HideInInspector]
-    public bool hasItemInRange = false;
+    [HideInInspector] public bool hasItemInRange;
 
-    private Dictionary<string, uint> m_items = new Dictionary<string, uint>()
-    {
+    private readonly Dictionary<string, uint> _items = new Dictionary<string, uint>() {
         {"pie", 10},
         {"dollar", 5},
         {"chocolate", 0},
@@ -36,106 +28,83 @@ public class PlayerInventory : MonoBehaviour {
         {"cherry", 0}
     };
 
-    public uint NumberOfPies
-    {
-        get
-        {
-            return m_items["pie"];
-        }
+    public uint NumberOfPies {
+        get { return _items["pie"]; }
     }
 
-    public uint NumberOfDollars
-    {
-        get
-        {
-            return m_items["dollar"];
-        }
+    public uint NumberOfDollars {
+        get { return _items["dollar"]; }
     }
 
-    public uint GetItemCount(string itemTypeName)
-    {
-        if (m_items.ContainsKey(itemTypeName))
-            return m_items[itemTypeName];
-        else
-            return 0;
+    public uint GetItemCount(string itemTypeName) {
+        return _items.ContainsKey(itemTypeName) ? _items[itemTypeName] : 0;
     }
 
-    void UpdateItemCount()
-    {
-        ItemCounter itemCounter = (ItemCounter)Object.FindObjectOfType<ItemCounter>();
-        if (itemCounter != null)
+    private void UpdateItemCount() {
+        var itemCounter = (ItemCounter) Object.FindObjectOfType<ItemCounter>();
+        if (itemCounter != null) {
             itemCounter.UpdateItems(this);
+        }
     }
 
-    // Use this for initialization
-    void Start ()
-    {
+    private void Start() {
         hasItemInRange = false;
         UpdateItemCount();
     }
 
-    // Update is called once per frame
-    void Update ()
-    {
-
-    }
-
-    public bool TryThrowingPie()
-    {
-        if (m_items["pie"] > 0)
-        {
-            --m_items["pie"];
+    public bool TryThrowingPie() {
+        if (_items["pie"] > 0) {
+            --_items["pie"];
             UpdateItemCount();
             return true;
         }
-        else return false;
+
+        return false;
     }
 
-    public bool TryPickingUp(string itemTypeName)
-    {
-        if (itemTypeName == "coin")
-        {
-            if (m_items["dollar"] < maxNumberOfDollars)
-            {
-                ++m_items["dollar"];
+    public bool TryPickingUp(string itemTypeName) {
+        if (itemTypeName == "coin") {
+            if (_items["dollar"] < maxNumberOfDollars) {
+                ++_items["dollar"];
                 UpdateItemCount();
                 return true;
             }
-            else return false;
+
+            return false;
         }
-        else if (itemTypeName == "pie")
-        {
-            if (m_items["pie"] < maxNumberOfPies)
-            {
-                ++m_items["pie"];
+
+        if (itemTypeName == "pie") {
+            if (_items["pie"] < maxNumberOfPies) {
+                ++_items["pie"];
                 UpdateItemCount();
                 return true;
             }
-            else return false;
+
+            return false;
         }
-        else if (itemTypeName == "vending")
-        {
-            if ((m_items["dollar"] > 0) && (m_items["pie"] < (maxNumberOfPies - piesPerDollar + 1)))
-            {
-                --m_items["dollar"];
-                m_items["pie"] += 2;
+
+        if (itemTypeName == "vending") {
+            if (_items["dollar"] > 0 && _items["pie"] < maxNumberOfPies - piesPerDollar + 1) {
+                --_items["dollar"];
+                _items["pie"] += 2;
                 UpdateItemCount();
                 return true;
             }
-            else return false;
+
+            return false;
         }
-        else if (itemTypeName == "empty")
-            return true;
-        else // store item in a list
-        {
-            ++m_items[itemTypeName];
-            UpdateItemCount();
+
+        if (itemTypeName == "empty") {
             return true;
         }
+
+        ++_items[itemTypeName];
+        UpdateItemCount();
+        return true;
     }
 
-    public bool IsReadyForMagicSmoothie()
-    {
-        return (m_items["chocolate"] > 2) && (m_items["icecream"] > 1) && (m_items["sundaecup"] > 0) && (m_items["cherry"] > 0);
+    public bool IsReadyForMagicSmoothie() {
+        return _items["chocolate"] > 2 && _items["icecream"] > 1 && _items["sundaecup"] > 0 &&
+               _items["cherry"] > 0;
     }
 }

@@ -1,13 +1,10 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
-using System.Collections;
 
 [RequireComponent(typeof(AudioSource))]
 public class VendingMachine : MonoBehaviour {
-
-    private uint m_numPiesLeft;
-    private GameObject m_instancedUI;
-    private AudioSource m_audioSource;
+    private uint _numPiesLeft;
+    private GameObject _instancedUI;
+    private AudioSource _audioSource;
 
     public uint InitialPieCountMin = 15;
     public uint InitialPieCountMax = 25;
@@ -15,63 +12,49 @@ public class VendingMachine : MonoBehaviour {
 
     public AudioClip[] coinSounds;
 
-    // Use this for initialization
-    void Start ()
-    {
-        m_numPiesLeft = (uint)Random.Range((int)InitialPieCountMin, (int)InitialPieCountMax);
-        m_audioSource = gameObject.GetComponent<AudioSource>();
+    private void Start() {
+        _numPiesLeft = (uint) Random.Range((int) InitialPieCountMin, (int) InitialPieCountMax);
+        _audioSource = gameObject.GetComponent<AudioSource>();
     }
 
-    // Update is called once per frame
-    void Update ()
-    {
-        if (Input.GetButtonUp("Use"))
-        {
-            if (m_instancedUI != null)
-            {
-                if (m_numPiesLeft > 0)
-                {
-                    if (PlayerInventory.Instance.TryPickingUp("vending"))
-                    {
-                        --m_numPiesLeft;
-                        if (m_audioSource.isPlaying)
-                            m_audioSource.Stop();
-                        m_audioSource.clip = coinSounds[Random.Range(0, coinSounds.Length)];
-                        m_audioSource.Play();
+    private void Update() {
+        if (Input.GetButtonUp("Use")) {
+            if (_instancedUI != null) {
+                if (_numPiesLeft > 0) {
+                    if (PlayerInventory.Instance.TryPickingUp("vending")) {
+                        --_numPiesLeft;
+                        if (_audioSource.isPlaying)
+                            _audioSource.Stop();
+                        _audioSource.clip = coinSounds[Random.Range(0, coinSounds.Length)];
+                        _audioSource.Play();
                     }
                 }
             }
         }
     }
 
-    void OnMouseOver()
-    {
-        if ((Vector3.Distance(transform.position, PlayerController.Instance.gameObject.transform.position)
-         < canBuyFromDistance))
-        {
+    private void OnMouseOver() {
+        if (Vector3.Distance(transform.position, PlayerController.Instance.gameObject.transform.position)
+             < canBuyFromDistance) {
             CreateText();
         }
     }
 
-    void OnMouseExit()
-    {
+    private void OnMouseExit() {
         DeleteText();
     }
 
 
-    void CreateText()
-    {
-        if (m_instancedUI == null)
-        {
-            m_instancedUI = (GameObject)Object.Instantiate(Resources.Load("Texts/BuyPieMessage"), transform.position + new Vector3(0.0f, 0.6f, 0.0f), Quaternion.Euler(90.0f, 0.0f, 0.0f));
+    private void CreateText() {
+        if (_instancedUI == null) {
+            _instancedUI = (GameObject) Instantiate(Resources.Load("Texts/BuyPieMessage"),
+                transform.position + new Vector3(0.0f, 0.6f, 0.0f), Quaternion.Euler(90.0f, 0.0f, 0.0f));
         }
     }
-    
-    void DeleteText()
-    {
-        if (m_instancedUI != null)
-        {
-            Object.Destroy(m_instancedUI);
+
+    private void DeleteText() {
+        if (_instancedUI != null) {
+            Destroy(_instancedUI);
         }
     }
 }
